@@ -10,19 +10,19 @@ import UIKit
 import UserNotifications
 
 
-class ContentHandler {
-    static let shared = ContentHandler()
+public class ContentHandler {
+    private init(){}
     
-    private var contentHandler: ((UNNotificationContent) -> Void)?
-    private var bestAttemptContent: UNMutableNotificationContent?
+    private static var contentHandler: ((UNNotificationContent) -> Void)?
+    private static var bestAttemptContent: UNMutableNotificationContent?
     
-    func getImage(imageUrl:String, completion:@escaping (_ image:UIImage?)->()){
+    public static func getImage(imageUrl:String, completion:@escaping (_ image:UIImage?)->()){
         setImage(imagePath: imageUrl) { (image) in
             completion(image)
         }
     }
     
-    private func setImage(imagePath: String, completion:@escaping (_ image:UIImage?)->()){
+    private static func setImage(imagePath: String, completion:@escaping (_ image:UIImage?)->()){
         guard let url = URL(string: imagePath) else {
             print("Failed to present attachment due to an invalid url: %@", imagePath)
             completion(nil)
@@ -42,7 +42,7 @@ class ContentHandler {
         task.resume()
     }
     
-    func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
+    public static func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
         self.contentHandler = contentHandler
         bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
         
@@ -77,7 +77,7 @@ class ContentHandler {
         }
     }
     
-    func serviceExtensionTimeWillExpire() {
+    public static func serviceExtensionTimeWillExpire() {
         // Called just before the extension will be terminated by the system.
         // Use this as an opportunity to deliver your "best attempt" at modified content, otherwise the original push payload will be used.
         if let contentHandler = contentHandler, let bestAttemptContent =  bestAttemptContent {
