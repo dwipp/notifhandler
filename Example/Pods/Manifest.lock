@@ -1,0 +1,16 @@
+PODS:
+  - notifhandler (0.1.0)
+
+DEPENDENCIES:
+  - notifhandler (from `../notifhandler`)
+
+EXTERNAL SOURCES:
+  notifhandler:
+    :path: "../notifhandler"
+
+SPEC CHECKSUMS:
+  notifhandler: a4d0d7f2380d4b3db370a21cddfd1150a8b2c821
+
+PODFILE CHECKSUM: ad90e5d398432235b46b361109bc96cc5886960c
+
+COCOAPODS: 1.5.3
