@@ -9,7 +9,10 @@
 /* Begin PBXBuildFile section */
 		962751E5212468BF0053D99A /* notifhandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 962751E3212468BF0053D99A /* notifhandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		962751EC212468C90053D99A /* Sample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962751EB212468C90053D99A /* Sample.swift */; };
-		9627520C21246DC00053D99A /* ContentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9627520B21246DC00053D99A /* ContentHandler.swift */; };
+		9627520C21246DC00053D99A /* SwipeNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9627520B21246DC00053D99A /* SwipeNotification.swift */; };
+		96EFEC3A2128729800E77A30 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EFEC392128729800E77A30 /* Header.swift */; };
+		96EFEC3C2128747000E77A30 /* DataCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EFEC3B2128747000E77A30 /* DataCompiler.swift */; };
+		96F08D832128808900F71EAF /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F08D822128808900F71EAF /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -17,7 +20,10 @@
 		962751E3212468BF0053D99A /* notifhandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = notifhandler.h; sourceTree = "<group>"; };
 		962751E4212468BF0053D99A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		962751EB212468C90053D99A /* Sample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sample.swift; sourceTree = "<group>"; };
-		9627520B21246DC00053D99A /* ContentHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentHandler.swift; sourceTree = "<group>"; };
+		9627520B21246DC00053D99A /* SwipeNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeNotification.swift; sourceTree = "<group>"; };
+		96EFEC392128729800E77A30 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
+		96EFEC3B2128747000E77A30 /* DataCompiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCompiler.swift; sourceTree = "<group>"; };
+		96F08D822128808900F71EAF /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +59,10 @@
 				962751E3212468BF0053D99A /* notifhandler.h */,
 				962751E4212468BF0053D99A /* Info.plist */,
 				962751EB212468C90053D99A /* Sample.swift */,
-				9627520B21246DC00053D99A /* ContentHandler.swift */,
+				9627520B21246DC00053D99A /* SwipeNotification.swift */,
+				96EFEC392128729800E77A30 /* Header.swift */,
+				96EFEC3B2128747000E77A30 /* DataCompiler.swift */,
+				96F08D822128808900F71EAF /* Model.swift */,
 			);
 			path = notifhandler;
 			sourceTree = "<group>";
@@ -137,7 +146,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9627520C21246DC00053D99A /* ContentHandler.swift in Sources */,
+				96F08D832128808900F71EAF /* Model.swift in Sources */,
+				9627520C21246DC00053D99A /* SwipeNotification.swift in Sources */,
+				96EFEC3A2128729800E77A30 /* Header.swift in Sources */,
+				96EFEC3C2128747000E77A30 /* DataCompiler.swift in Sources */,
 				962751EC212468C90053D99A /* Sample.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

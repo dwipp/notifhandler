@@ -3,14 +3,14 @@
 //  Notification Content Extension
 //
 //  Created by Dwi Permana Putra on 15/08/18.
-//  Copyright © 2018 Dragon Capital Centre. All rights reserved.
+//  Copyright © 2018 Ropen Indonesia. All rights reserved.
 //
 
 import UIKit
 import UserNotifications
 
 
-public class ContentHandler {
+public class SwipeNotification {
     private init(){}
     
     private static var contentHandler: ((UNNotificationContent) -> Void)?
