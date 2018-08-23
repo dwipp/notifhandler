@@ -9,6 +9,15 @@
 import Foundation
 
 struct RegistrationModel: Decodable {
+    let code:Int
+    let result:RegModel
+}
+
+struct RegModel: Decodable {
     let public_id:String
     let session_id:String
+}
+
+struct SignalModel: Decodable {
+    let code:Int
 }

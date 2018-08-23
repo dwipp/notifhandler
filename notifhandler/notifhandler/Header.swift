@@ -41,14 +41,39 @@ struct Header {
     }
     
     static private func userAgent() -> String {
-        return "\(appName()) \(deviceName()) \(deviceVersion()) \(CFNetwork()) \(darwin())"
+        return "\(appName()) \(deviceName()) \(deviceVersion) \(CFNetwork()) \(darwin())"
+    }
+    
+    static private func clientUTC()->String{
+        var utcInSecond = TimeZone.current.secondsFromGMT()
+        var frontPrefix = "+"
+        if utcInSecond < 0 {
+            frontPrefix = "-"
+            utcInSecond = utcInSecond * -1
+        }
+        
+        let hourInt = utcInSecond/3600
+        var hour = "\(hourInt)"
+        if hourInt < 10 {
+            hour = "0\(hourInt)"
+        }
+        
+        let minuteInt = (utcInSecond%3600)/60
+        var minute = "\(minuteInt)"
+        if minuteInt < 10 {
+            minute = "0\(minuteInt)"
+        }
+        
+        return frontPrefix + "\(hour):\(minute)"
     }
     
     static func setup() -> [String:String] {
-        let header:[String:String] = ["sd-user-agent":self.userAgent(),
-                      "sd-client-UTC":TimeZone.current.abbreviation() ?? "",
-                      "sd-app-id":"",
-                      "sd-app-secret":""]
+        let header:[String:String] = [
+            "sd-user-agent":self.userAgent(),
+            "sd-client-UTC": clientUTC(),
+            "sd-app-id":"1808000001",
+            "sd-app-secret":"4EB320AA819248AA6F7F9C412A6ADB67D83293B9441D16BB83764E6FDE9F9948",
+            "Content-Type":"application/json"]
         return header
     }
 }

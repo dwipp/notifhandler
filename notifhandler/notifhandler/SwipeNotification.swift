@@ -57,6 +57,9 @@ public class SwipeNotification {
                 urlString = urlImageString
             }
             
+            // signaling SwipeDK
+            SwipeConfiguration.notifReceived(withPushID: aps!["push_id"] as! String)
+            
             if urlString != nil, let fileUrl = URL(string: urlString!) {
                 print("fileUrl: \(fileUrl)")
                 
@@ -108,3 +111,4 @@ extension UNNotificationAttachment {
         return nil
     }
 }
+

@@ -13,8 +13,11 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let str = Sample.doSomething()
-        print(str)
+        
+        SwipeDK.configure()
+//        SwipeDK.
+        
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
 

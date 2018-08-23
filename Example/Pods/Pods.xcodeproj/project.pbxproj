@@ -7,17 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C0DB0BFA893D0CBB3FCB1A6104C1CD4 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9A5EAFADCFE7651AE65D8C20BF51149 /* UserNotifications.framework */; };
-		33283670B29BC92D0A02EA34A79C99C3 /* notifhandler-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F6397447735F889C7AAEE8F8FFAF0996 /* notifhandler-dummy.m */; };
-		4517E4E246F9ED7A9ECFEAD8C73D37FD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F642E48B5AEF3D72D7026FDB77FBA65B /* Foundation.framework */; };
+		32D46F2F5A65582BCD58734FDB28EE81 /* SwipeAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1453F91202D8CA9BA8996543DC7D4B0B /* SwipeAppDelegate.swift */; };
+		371726EFDB011A0F8B6479A315D1C7BB /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6751EA0D0BABE1E1767ED3A8D27AF144 /* Model.swift */; };
+		553B61A2DF9BB58ED8CD32407B9074B2 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9A5EAFADCFE7651AE65D8C20BF51149 /* UserNotifications.framework */; };
+		7104FDBAC273BAC0CFF9B58BD45A5F70 /* notifhandler-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 79DBB97D0FDA2E2823F88C99184596DD /* notifhandler-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		743069519F311871A16AA8DF2444081D /* DataCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41ECCB0D8E5DD57B8932410323D95617 /* DataCompiler.swift */; };
+		757C437E31B7FCCA867E94DF8CF4B79B /* SwipeNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60535EEFBB4EE4E07FFA815E33D08979 /* SwipeNotification.swift */; };
 		886AA08805911132A35177D213A4F7E5 /* Pods-Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 15D3FE98E9F2D34863BD3F3597A0485A /* Pods-Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8E9D42047C27FCE95287E6E70E1532E3 /* notifhandler-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 50AC6B0F76506A87186E6CEF9643D25F /* notifhandler-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BE7C564CF2CE97A51CFC5499BC6105E7 /* notifhandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 934E4EF7627577FA967AFBEE61675823 /* notifhandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CA86D1A6B892CB616C5BCE0F30C16877 /* Sample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF59407F6537C60D0AFC2F68C97B8D8 /* Sample.swift */; };
+		8FE190FF04E1D51519176680F8850EEA /* Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 437BED9D1D9FEE2D739A6FC8C7E6FC10 /* Info.plist */; };
+		AB01085D91E3BCBD6EE9E683CC777FDD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F642E48B5AEF3D72D7026FDB77FBA65B /* Foundation.framework */; };
 		CEC42D7A8E557BF40925058D24268756 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F642E48B5AEF3D72D7026FDB77FBA65B /* Foundation.framework */; };
-		CFABF366FE78BDF41883122E7DDFC86C /* Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = ACF8BBB5570C92EC3CD42F7F94D7CE87 /* Info.plist */; };
 		D7E97F8B9A27AC0C82F4A564D931F41E /* Pods-Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD65E35A3233FBE6F2EFDEB3D43D114 /* Pods-Example-dummy.m */; };
-		D84F0E87402592EFEC23596C0C3C19B7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA1FC96D0856E8633D224D04E0369825 /* UIKit.framework */; };
+		E0E837189FE42910F48720360F3796FC /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9AD7A36753699BD3C3FC77BF90C151 /* Header.swift */; };
+		E37928A25B786C2B2992AA55281F742E /* notifhandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 35C6FE312FECB4EE9C6AEC5B87C2EBF5 /* notifhandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E645A78737A09A425951565767310C66 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA1FC96D0856E8633D224D04E0369825 /* UIKit.framework */; };
+		EF73FB76C40F71205CCA968CEAC2044A /* notifhandler-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 55DAFE6170E4BBAD1972DDEC42E70FE2 /* notifhandler-dummy.m */; };
+		FE93AFB58447CA3403E81C5756971333 /* Sample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8265E76B4A503FB3F2A9B93BA5C17A /* Sample.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,48 +30,53 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = AE202C2F0C0676E90C7864E0914D2CDD;
+			remoteGlobalIDString = 889F785CE3499948B351EF286F0FB7FB;
 			remoteInfo = notifhandler;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		044AA3E23F71470C9B5F50D44720EA0D /* Pods-Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Example-resources.sh"; sourceTree = "<group>"; };
+		08239D1A451A4135119F52636C67CD3F /* notifhandler.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = notifhandler.modulemap; sourceTree = "<group>"; };
 		11434BC759D12F57876FBB74A4775E74 /* Pods-Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		1453F91202D8CA9BA8996543DC7D4B0B /* SwipeAppDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwipeAppDelegate.swift; path = notifhandler/SwipeAppDelegate.swift; sourceTree = "<group>"; };
 		15D3FE98E9F2D34863BD3F3597A0485A /* Pods-Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Example-umbrella.h"; sourceTree = "<group>"; };
 		1AD65E35A3233FBE6F2EFDEB3D43D114 /* Pods-Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Example-dummy.m"; sourceTree = "<group>"; };
 		25A37D4D536CC5988A439441117C41F4 /* Pods-Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Example.modulemap"; sourceTree = "<group>"; };
+		35C6FE312FECB4EE9C6AEC5B87C2EBF5 /* notifhandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = notifhandler.h; path = notifhandler/notifhandler.h; sourceTree = "<group>"; };
 		3ADE9E5655579DB0F79DC9C80758673C /* Pods-Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		3F3EFEBDE6702DEFDFFF9D5C6DBC3773 /* Pods-Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Example-frameworks.sh"; sourceTree = "<group>"; };
 		40E4100FB47E24F6E6933D03E737A33A /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Example.framework; path = "Pods-Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		50AC6B0F76506A87186E6CEF9643D25F /* notifhandler-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "notifhandler-umbrella.h"; sourceTree = "<group>"; };
-		528E800640634F0ADBC5D947DA7B8B13 /* notifhandler.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = notifhandler.xcconfig; sourceTree = "<group>"; };
+		41ECCB0D8E5DD57B8932410323D95617 /* DataCompiler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataCompiler.swift; path = notifhandler/DataCompiler.swift; sourceTree = "<group>"; };
+		437BED9D1D9FEE2D739A6FC8C7E6FC10 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = notifhandler/Info.plist; sourceTree = "<group>"; };
+		55DAFE6170E4BBAD1972DDEC42E70FE2 /* notifhandler-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "notifhandler-dummy.m"; sourceTree = "<group>"; };
+		5B2998D27DC0CB3A4AD43850516C2CD1 /* notifhandler.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = notifhandler.xcconfig; sourceTree = "<group>"; };
 		5B81C04F8E84EAE60AE15C8695031A5F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6050D3C4AF679273F644C30E393FEF08 /* notifhandler.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = notifhandler.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		7D1A0276C9674B6F24E577CF707773A2 /* notifhandler.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = notifhandler.modulemap; sourceTree = "<group>"; };
-		7E0E846B749150507FC488D923B4FC7D /* notifhandler-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "notifhandler-prefix.pch"; sourceTree = "<group>"; };
-		934E4EF7627577FA967AFBEE61675823 /* notifhandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = notifhandler.h; path = notifhandler/notifhandler.h; sourceTree = "<group>"; };
+		60535EEFBB4EE4E07FFA815E33D08979 /* SwipeNotification.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwipeNotification.swift; path = notifhandler/SwipeNotification.swift; sourceTree = "<group>"; };
+		6751EA0D0BABE1E1767ED3A8D27AF144 /* Model.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Model.swift; path = notifhandler/Model.swift; sourceTree = "<group>"; };
+		75DEFC419D69F4A4B670A3D188086340 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		79DBB97D0FDA2E2823F88C99184596DD /* notifhandler-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "notifhandler-umbrella.h"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9DF59407F6537C60D0AFC2F68C97B8D8 /* Sample.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Sample.swift; path = notifhandler/Sample.swift; sourceTree = "<group>"; };
+		980C2C3C5A2A1EFEB0F744E390664CF0 /* notifhandler.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = notifhandler.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D8265E76B4A503FB3F2A9B93BA5C17A /* Sample.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Sample.swift; path = notifhandler/Sample.swift; sourceTree = "<group>"; };
 		A375F80A370AFBAAF0D797F302B089A3 /* notifhandler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = notifhandler.framework; path = notifhandler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A79AC23D5A157FED70D9C53D844B2319 /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
-		ACF8BBB5570C92EC3CD42F7F94D7CE87 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = notifhandler/Info.plist; sourceTree = "<group>"; };
+		AB9AD7A36753699BD3C3FC77BF90C151 /* Header.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Header.swift; path = notifhandler/Header.swift; sourceTree = "<group>"; };
+		B7B00DFC80F5CA1870C0263262D16985 /* notifhandler-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "notifhandler-prefix.pch"; sourceTree = "<group>"; };
 		BA1FC96D0856E8633D224D04E0369825 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		D9A5EAFADCFE7651AE65D8C20BF51149 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/UserNotifications.framework; sourceTree = DEVELOPER_DIR; };
-		E95DFBD4B6F8A10D43AA791D773D4F81 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EFC5B2E05B58CD826FD55659BF1D7E39 /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
-		F6397447735F889C7AAEE8F8FFAF0996 /* notifhandler-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "notifhandler-dummy.m"; sourceTree = "<group>"; };
 		F642E48B5AEF3D72D7026FDB77FBA65B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		DBFB09DF23B49713A28F956EB0169DFE /* Frameworks */ = {
+		7040F1A465C0E590DD58DCF7C2AF40CF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4517E4E246F9ED7A9ECFEAD8C73D37FD /* Foundation.framework in Frameworks */,
-				D84F0E87402592EFEC23596C0C3C19B7 /* UIKit.framework in Frameworks */,
-				0C0DB0BFA893D0CBB3FCB1A6104C1CD4 /* UserNotifications.framework in Frameworks */,
+				AB01085D91E3BCBD6EE9E683CC777FDD /* Foundation.framework in Frameworks */,
+				E645A78737A09A425951565767310C66 /* UIKit.framework in Frameworks */,
+				553B61A2DF9BB58ED8CD32407B9074B2 /* UserNotifications.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +99,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		141A64B808B783FF1F584EA4EB0287E8 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				75DEFC419D69F4A4B670A3D188086340 /* Info.plist */,
+				08239D1A451A4135119F52636C67CD3F /* notifhandler.modulemap */,
+				5B2998D27DC0CB3A4AD43850516C2CD1 /* notifhandler.xcconfig */,
+				55DAFE6170E4BBAD1972DDEC42E70FE2 /* notifhandler-dummy.m */,
+				B7B00DFC80F5CA1870C0263262D16985 /* notifhandler-prefix.pch */,
+				79DBB97D0FDA2E2823F88C99184596DD /* notifhandler-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Example/Pods/Target Support Files/notifhandler";
+			sourceTree = "<group>";
+		};
 		1B5ECB992A56AE0C70DC72D88BB90B05 /* Pods-Example */ = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +131,14 @@
 			path = "Target Support Files/Pods-Example";
 			sourceTree = "<group>";
 		};
+		1D979FD70C5490C2D11ACC520C6B48B9 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4F0AE5BE4466E99AC6FF9C345CE221CD /* notifhandler */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
 		225EDD0214B19C66BF21890A60B98179 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,39 +148,30 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2D45B2DFE8E3A3DE830CE8B358A84BCC /* notifhandler */ = {
+		3465A6B0F29CFDC768845076E009B121 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				ACF8BBB5570C92EC3CD42F7F94D7CE87 /* Info.plist */,
-				934E4EF7627577FA967AFBEE61675823 /* notifhandler.h */,
-				9DF59407F6537C60D0AFC2F68C97B8D8 /* Sample.swift */,
-				E6B944683CF1F984BFEA8A338BF8FC5E /* Pod */,
-				3F8CD5E7A4B17F1FDD14E6533F78661C /* Support Files */,
+				980C2C3C5A2A1EFEB0F744E390664CF0 /* notifhandler.podspec */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		4F0AE5BE4466E99AC6FF9C345CE221CD /* notifhandler */ = {
+			isa = PBXGroup;
+			children = (
+				41ECCB0D8E5DD57B8932410323D95617 /* DataCompiler.swift */,
+				AB9AD7A36753699BD3C3FC77BF90C151 /* Header.swift */,
+				437BED9D1D9FEE2D739A6FC8C7E6FC10 /* Info.plist */,
+				6751EA0D0BABE1E1767ED3A8D27AF144 /* Model.swift */,
+				35C6FE312FECB4EE9C6AEC5B87C2EBF5 /* notifhandler.h */,
+				9D8265E76B4A503FB3F2A9B93BA5C17A /* Sample.swift */,
+				1453F91202D8CA9BA8996543DC7D4B0B /* SwipeAppDelegate.swift */,
+				60535EEFBB4EE4E07FFA815E33D08979 /* SwipeNotification.swift */,
+				3465A6B0F29CFDC768845076E009B121 /* Pod */,
+				141A64B808B783FF1F584EA4EB0287E8 /* Support Files */,
 			);
 			name = notifhandler;
 			path = ../../notifhandler;
-			sourceTree = "<group>";
-		};
-		3F8CD5E7A4B17F1FDD14E6533F78661C /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				E95DFBD4B6F8A10D43AA791D773D4F81 /* Info.plist */,
-				7D1A0276C9674B6F24E577CF707773A2 /* notifhandler.modulemap */,
-				528E800640634F0ADBC5D947DA7B8B13 /* notifhandler.xcconfig */,
-				F6397447735F889C7AAEE8F8FFAF0996 /* notifhandler-dummy.m */,
-				7E0E846B749150507FC488D923B4FC7D /* notifhandler-prefix.pch */,
-				50AC6B0F76506A87186E6CEF9643D25F /* notifhandler-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Example/Pods/Target Support Files/notifhandler";
-			sourceTree = "<group>";
-		};
-		5198D8BAFCA6B013AF3521F0B655B9AB /* Development Pods */ = {
-			isa = PBXGroup;
-			children = (
-				2D45B2DFE8E3A3DE830CE8B358A84BCC /* notifhandler */,
-			);
-			name = "Development Pods";
 			sourceTree = "<group>";
 		};
 		6A4F6A14E3FB951290E4531728B7A461 /* Targets Support Files */ = {
@@ -163,7 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				5198D8BAFCA6B013AF3521F0B655B9AB /* Development Pods */,
+				1D979FD70C5490C2D11ACC520C6B48B9 /* Development Pods */,
 				122DA2E5084A4393C29BE363C764795C /* Frameworks */,
 				225EDD0214B19C66BF21890A60B98179 /* Products */,
 				6A4F6A14E3FB951290E4531728B7A461 /* Targets Support Files */,
@@ -180,14 +203,6 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		E6B944683CF1F984BFEA8A338BF8FC5E /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				6050D3C4AF679273F644C30E393FEF08 /* notifhandler.podspec */,
-			);
-			name = Pod;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -199,12 +214,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0DD96391CB9311BAA03FA6A6BB93F0F6 /* Headers */ = {
+		6F1295527B0757B41D2F96537410689B /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E9D42047C27FCE95287E6E70E1532E3 /* notifhandler-umbrella.h in Headers */,
-				BE7C564CF2CE97A51CFC5499BC6105E7 /* notifhandler.h in Headers */,
+				7104FDBAC273BAC0CFF9B58BD45A5F70 /* notifhandler-umbrella.h in Headers */,
+				E37928A25B786C2B2992AA55281F742E /* notifhandler.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,13 +244,13 @@
 			productReference = 40E4100FB47E24F6E6933D03E737A33A /* Pods_Example.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		AE202C2F0C0676E90C7864E0914D2CDD /* notifhandler */ = {
+		889F785CE3499948B351EF286F0FB7FB /* notifhandler */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 09F4983E39FD2F3F3A99F806A632F61A /* Build configuration list for PBXNativeTarget "notifhandler" */;
+			buildConfigurationList = 9659BAD9686DCEF37CBCDE710230AB16 /* Build configuration list for PBXNativeTarget "notifhandler" */;
 			buildPhases = (
-				559CAD58D9072E1BFAFA8407309FFB2E /* Sources */,
-				DBFB09DF23B49713A28F956EB0169DFE /* Frameworks */,
-				0DD96391CB9311BAA03FA6A6BB93F0F6 /* Headers */,
+				F5C05F1B7AD1DCE77F536443B0619D9A /* Sources */,
+				7040F1A465C0E590DD58DCF7C2AF40CF /* Frameworks */,
+				6F1295527B0757B41D2F96537410689B /* Headers */,
 			);
 			buildRules = (
 			);
@@ -267,28 +282,33 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AE202C2F0C0676E90C7864E0914D2CDD /* notifhandler */,
+				889F785CE3499948B351EF286F0FB7FB /* notifhandler */,
 				85C7D42A47D87DC1713012AA6B5E2EE8 /* Pods-Example */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		559CAD58D9072E1BFAFA8407309FFB2E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CFABF366FE78BDF41883122E7DDFC86C /* Info.plist in Sources */,
-				33283670B29BC92D0A02EA34A79C99C3 /* notifhandler-dummy.m in Sources */,
-				CA86D1A6B892CB616C5BCE0F30C16877 /* Sample.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D0E3960D6FCA5A3F925333DEB0DF6CF6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				D7E97F8B9A27AC0C82F4A564D931F41E /* Pods-Example-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5C05F1B7AD1DCE77F536443B0619D9A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				743069519F311871A16AA8DF2444081D /* DataCompiler.swift in Sources */,
+				E0E837189FE42910F48720360F3796FC /* Header.swift in Sources */,
+				8FE190FF04E1D51519176680F8850EEA /* Info.plist in Sources */,
+				371726EFDB011A0F8B6479A315D1C7BB /* Model.swift in Sources */,
+				EF73FB76C40F71205CCA968CEAC2044A /* notifhandler-dummy.m in Sources */,
+				FE93AFB58447CA3403E81C5756971333 /* Sample.swift in Sources */,
+				32D46F2F5A65582BCD58734FDB28EE81 /* SwipeAppDelegate.swift in Sources */,
+				757C437E31B7FCCA867E94DF8CF4B79B /* SwipeNotification.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,7 +318,7 @@
 		201B8CE318EA9F77202A312A125BE312 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = notifhandler;
-			target = AE202C2F0C0676E90C7864E0914D2CDD /* notifhandler */;
+			target = 889F785CE3499948B351EF286F0FB7FB /* notifhandler */;
 			targetProxy = CE724D9090426A54983F064E049EE468 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -337,44 +357,6 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		309D94C497A2DCC844D73F80E67C09A0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 528E800640634F0ADBC5D947DA7B8B13 /* notifhandler.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/notifhandler/notifhandler-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/notifhandler/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/notifhandler/notifhandler.modulemap";
-				PRODUCT_MODULE_NAME = notifhandler;
-				PRODUCT_NAME = notifhandler;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -445,9 +427,9 @@
 			};
 			name = Debug;
 		};
-		928344D73AF2DC39510D74A9882E865A /* Debug */ = {
+		AED6C732FBDCFDCEE10F5FC1FC14C9C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 528E800640634F0ADBC5D947DA7B8B13 /* notifhandler.xcconfig */;
+			baseConfigurationReference = 5B2998D27DC0CB3A4AD43850516C2CD1 /* notifhandler.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
@@ -580,18 +562,47 @@
 			};
 			name = Debug;
 		};
+		E0CB84A95476A64677C4078B54DFD894 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5B2998D27DC0CB3A4AD43850516C2CD1 /* notifhandler.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/notifhandler/notifhandler-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/notifhandler/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/notifhandler/notifhandler.modulemap";
+				PRODUCT_MODULE_NAME = notifhandler;
+				PRODUCT_NAME = notifhandler;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		09F4983E39FD2F3F3A99F806A632F61A /* Build configuration list for PBXNativeTarget "notifhandler" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				928344D73AF2DC39510D74A9882E865A /* Debug */,
-				309D94C497A2DCC844D73F80E67C09A0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -606,6 +617,15 @@
 			buildConfigurations = (
 				C2EFCC568BC9AA98EC7C369ECDFC3A86 /* Debug */,
 				2040F9B947ED63F2D391577A57F3FDCF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9659BAD9686DCEF37CBCDE710230AB16 /* Build configuration list for PBXNativeTarget "notifhandler" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AED6C732FBDCFDCEE10F5FC1FC14C9C1 /* Debug */,
+				E0CB84A95476A64677C4078B54DFD894 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
