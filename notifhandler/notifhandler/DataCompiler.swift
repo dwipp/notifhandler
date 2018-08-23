@@ -68,7 +68,7 @@ class Api {
         }
     }
     
-    func notif(withSignal signal:Signal, pushId:String, publicId:String, sessionId:String, completion:@escaping (_ result:SignalModel?, _ error:Error?)->()){
+    func notif(withSignal signal:Signal, pushId:String, publicId:String, sessionId:String, completion:@escaping (_ result:DefaultModel?, _ error:Error?)->()){
         let path = "push/set_signal"
         let params = ["signal":signal.rawValue,
                       "push_id":pushId,
@@ -82,12 +82,35 @@ class Api {
             }
             
             do{
-                let signal = try JSONDecoder().decode(SignalModel.self, from: data)
+                let signal = try JSONDecoder().decode(DefaultModel.self, from: data)
                 completion(signal, nil)
             }catch let err {
                 completion(nil, err)
             }
         }
+    }
+    
+    func registerToken(_ token:String, publicId:String, sessionId:String, completion:@escaping (_ result:DefaultModel?, _ error:Error?)->()) {
+        let path = "push/register_token"
+        let params = ["public_id":publicId,
+                      "session_id":sessionId,
+                      "push_token":token]
+        
+        request(withURL: endpoint()+path, method: .post, params: params) { (data, error) in
+            guard let data = data else {
+                completion(nil, error)
+                return
+            }
+            do{
+                let reg = try JSONDecoder().decode(DefaultModel.self, from: data)
+                completion(reg, nil)
+            }catch let err {
+                completion(nil, err)
+            }
+            
+            
+        }
+        
     }
     
 }

@@ -18,6 +18,6 @@ struct RegModel: Decodable {
     let session_id:String
 }
 
-struct SignalModel: Decodable {
+struct DefaultModel: Decodable {
     let code:Int
 }
