@@ -1,5 +1,5 @@
 PODS:
-  - notifhandler (0.1.8):
+  - notifhandler (0.2.0):
     - OneSignal (< 3.0, >= 2.6.2)
   - OneSignal (2.8.6)
 
@@ -15,9 +15,9 @@ EXTERNAL SOURCES:
     :path: "../notifhandler"
 
 SPEC CHECKSUMS:
-  notifhandler: de4136ab0c0c64901b6dffec4b558c6802d772a2
+  notifhandler: 8882de90763cf482ce2e41f7cd1e923f42f1a2c3
   OneSignal: 0173a4e48c620089e4a1aba44c82d4148547d812
 
-PODFILE CHECKSUM: 56449dd49fde27c562252868676c3ac908906fc6
+PODFILE CHECKSUM: f51150181469b239ca2a6164561ae8b8b8177fd3
 
 COCOAPODS: 1.5.3

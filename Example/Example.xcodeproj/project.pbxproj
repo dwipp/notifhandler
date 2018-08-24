@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5D2986F804C03B442CE3A7DE /* libPods-Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C0033588CC939DD4DEBA4F94 /* libPods-Example.a */; };
+		07B4DA2299642A4497A88508 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60FF77A4ED49CD9F649B2CCD /* Pods_Example.framework */; };
+		1C703A75197FB4F8A672315A /* Pods_NotificationContent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC07620E8911E552824D108 /* Pods_NotificationContent.framework */; };
+		80DE463B50B829413D9607CD /* Pods_Notification_Service.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F5B2CED093EF7118946FC4C /* Pods_Notification_Service.framework */; };
 		962751FA21246C420053D99A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962751F921246C420053D99A /* AppDelegate.swift */; };
 		962751FC21246C420053D99A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962751FB21246C420053D99A /* ViewController.swift */; };
 		962751FF21246C420053D99A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 962751FD21246C420053D99A /* Main.storyboard */; };
@@ -20,8 +22,6 @@
 		96E6AA3A2130334B001A27BB /* NotificationContent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 96E6AA2C2130334B001A27BB /* NotificationContent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		96E6AA4621303362001A27BB /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E6AA4521303362001A27BB /* NotificationService.swift */; };
 		96E6AA4A21303362001A27BB /* Notification Service.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 96E6AA4321303362001A27BB /* Notification Service.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		9BC3C906DB5A88B5B63749D2 /* libPods-NotificationContent.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 913E12EEACAD73549D37B8F2 /* libPods-NotificationContent.a */; };
-		C025929F6B28F988F6F49CEF /* libPods-Notification Service.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25BF43CDF8233BB66EE84D6F /* libPods-Notification Service.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,9 +57,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		25BF43CDF8233BB66EE84D6F /* libPods-Notification Service.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Notification Service.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		446468287D255F89F069891E /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
-		913E12EEACAD73549D37B8F2 /* libPods-NotificationContent.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NotificationContent.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		60FF77A4ED49CD9F649B2CCD /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F5B2CED093EF7118946FC4C /* Pods_Notification_Service.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Notification_Service.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		962751F621246C410053D99A /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		962751F921246C420053D99A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		962751FB21246C420053D99A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -80,9 +80,9 @@
 		96E6AA4E21303367001A27BB /* NotificationContent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotificationContent.entitlements; sourceTree = "<group>"; };
 		96E6AA4F2130336B001A27BB /* NotificationService.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotificationService.entitlements; sourceTree = "<group>"; };
 		A0CF67568C607FD80E89B87B /* Pods-NotificationContent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationContent.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NotificationContent/Pods-NotificationContent.debug.xcconfig"; sourceTree = "<group>"; };
-		C0033588CC939DD4DEBA4F94 /* libPods-Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D48BBADA8F480A210F7DC95A /* Pods-Notification Service.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Notification Service.release.xcconfig"; path = "Pods/Target Support Files/Pods-Notification Service/Pods-Notification Service.release.xcconfig"; sourceTree = "<group>"; };
 		D97B11280E00878BF45B5198 /* Pods-Notification Service.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Notification Service.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Notification Service/Pods-Notification Service.debug.xcconfig"; sourceTree = "<group>"; };
+		DBC07620E8911E552824D108 /* Pods_NotificationContent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NotificationContent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFB91B9F8EFFAD2806015AFF /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
 		E236F6147E5804119F6F4C9A /* Pods-NotificationContent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationContent.release.xcconfig"; path = "Pods/Target Support Files/Pods-NotificationContent/Pods-NotificationContent.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -92,7 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D2986F804C03B442CE3A7DE /* libPods-Example.a in Frameworks */,
+				07B4DA2299642A4497A88508 /* Pods_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,7 +102,7 @@
 			files = (
 				96E6AA302130334B001A27BB /* UserNotificationsUI.framework in Frameworks */,
 				96E6AA2E2130334B001A27BB /* UserNotifications.framework in Frameworks */,
-				9BC3C906DB5A88B5B63749D2 /* libPods-NotificationContent.a in Frameworks */,
+				1C703A75197FB4F8A672315A /* Pods_NotificationContent.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,7 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C025929F6B28F988F6F49CEF /* libPods-Notification Service.a in Frameworks */,
+				80DE463B50B829413D9607CD /* Pods_Notification_Service.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,9 +179,9 @@
 			children = (
 				96E6AA2D2130334B001A27BB /* UserNotifications.framework */,
 				96E6AA2F2130334B001A27BB /* UserNotificationsUI.framework */,
-				C0033588CC939DD4DEBA4F94 /* libPods-Example.a */,
-				25BF43CDF8233BB66EE84D6F /* libPods-Notification Service.a */,
-				913E12EEACAD73549D37B8F2 /* libPods-NotificationContent.a */,
+				60FF77A4ED49CD9F649B2CCD /* Pods_Example.framework */,
+				7F5B2CED093EF7118946FC4C /* Pods_Notification_Service.framework */,
+				DBC07620E8911E552824D108 /* Pods_NotificationContent.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

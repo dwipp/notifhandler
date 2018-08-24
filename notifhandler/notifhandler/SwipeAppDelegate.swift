@@ -116,22 +116,24 @@ public class SwipeDK {
 
 extension SwipeDK {
     private static func setupOneSignal(launchOptions: [UIApplicationLaunchOptionsKey: Any]?){
-        let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
-        OneSignal.initWithLaunchOptions(launchOptions,
-                                        appId: onesignalAppID,
-                                        handleNotificationAction: nil,
-                                        settings: onesignalInitSettings)
-        
-        OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification
-        OneSignal.promptForPushNotifications(userResponse: { accepted in
-            print("User accepted notifications: \(accepted)")
-            if let regid = OneSignal.getPermissionSubscriptionState().subscriptionStatus.pushToken,
-                let userid = OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId {
-                print("regid: \(regid)")
-                print("userid: \(userid)")
-                SwipeDK.registerToken(regid, andOneSignalID: userid)
-            }
+        DispatchQueue.main.async {
+            let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
+            OneSignal.initWithLaunchOptions(launchOptions,
+                                            appId: onesignalAppID,
+                                            handleNotificationAction: nil,
+                                            settings: onesignalInitSettings)
             
-        })
+            OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification
+            OneSignal.promptForPushNotifications(userResponse: { accepted in
+                print("User accepted notifications: \(accepted)")
+                if let regid = OneSignal.getPermissionSubscriptionState().subscriptionStatus.pushToken,
+                    let userid = OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId {
+                    print("regid: \(regid)")
+                    print("userid: \(userid)")
+                    SwipeDK.registerToken(regid, andOneSignalID: userid)
+                }
+                
+            })
+        }
     }
 }

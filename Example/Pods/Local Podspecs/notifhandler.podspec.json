@@ -1,6 +1,6 @@
 {
   "name": "notifhandler",
-  "version": "0.1.8",
+  "version": "0.2.0",
   "summary": "Simple notif handler for testing",
   "description": "This is a super cool framework dude. you need to install this one",
   "homepage": "https://github.com/dwipp/notifhandler",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/dwipp/notifhandler.git",
-    "tag": "0.1.8"
+    "tag": "0.2.0"
   },
   "source_files": "notifhandler/**/*",
   "frameworks": [
@@ -25,5 +25,6 @@
       ">= 2.6.2",
       "< 3.0"
     ]
-  }
+  },
+  "static_framework": true
 }
