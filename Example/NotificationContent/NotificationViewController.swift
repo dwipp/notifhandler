@@ -22,8 +22,8 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
     
     func didReceive(_ notification: UNNotification) {
         let userInfo = notification.request.content.userInfo
-        let aps = userInfo["aps"] as! [AnyHashable:Any]
-        let imgUrl = aps["image"] as! String
+        let aps = userInfo["att"] as! [AnyHashable:Any]
+        let imgUrl = aps["id"] as! String
         
         SwipeNotification.getImage(imageUrl: imgUrl) { (image) in
             self.imageView.image = image

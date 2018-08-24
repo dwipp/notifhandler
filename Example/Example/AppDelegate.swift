@@ -81,8 +81,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NotificationCenter.default.post(name: NSNotification.Name("setToken"), object: nil, userInfo: ["token":token])
 //        SwipeDK.application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
     }
-    
-
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {

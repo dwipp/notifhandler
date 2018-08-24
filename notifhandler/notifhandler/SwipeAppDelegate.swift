@@ -57,6 +57,7 @@ public class SwipeDK {
             tempToken = nil
             tempOneSignalID = nil
             if let data = result, data.code == 200 {
+                print("token has been registered")
             }else {
                 if let err = error {
                     print("SwipeDK error: \(err)")
@@ -90,8 +91,9 @@ public class SwipeDK {
     public static func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse) {
         let userInfo = response.notification.request.content.userInfo
-        let aps = userInfo["aps"] as? [AnyHashable:Any]
-        if let push_id = aps?["push_id"] as? String {
+        let cust = userInfo["custom"] as? [AnyHashable:Any]
+        let a = cust?["a"] as? [AnyHashable:Any]
+        if let push_id = a?["push_id"] as? String {
             SwipeConfiguration.notifClicked(withPushID: push_id)
         }else {
             print("SwipeDK error: no push_id found!")

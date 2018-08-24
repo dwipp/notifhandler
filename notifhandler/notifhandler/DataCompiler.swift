@@ -136,6 +136,7 @@ public class SwipeConfiguration {
         api.notif(withSignal: signal, pushId: pushID, publicId: publicId, sessionId: sessionId) { (result, error) in
             if let data = result, data.code == 200 {
                 // succeed
+                print("signaling to server that the notif has been: \(signal.rawValue)")
             }else {
                 // error
                 print("SwipeDK notif error: \(String(describing: error))")

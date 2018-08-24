@@ -52,13 +52,18 @@ public class SwipeNotification {
             
             var urlString:String? = nil
             let userInfo = request.content.userInfo
-            let aps = userInfo["aps"] as? [AnyHashable:Any]
-            if let urlImageString = aps!["image"] as? String {
+            let att = userInfo["att"] as? [AnyHashable:Any]
+            if let urlImageString = att?["id"] as? String {
                 urlString = urlImageString
             }
             
-            // signaling SwipeDK
-            SwipeConfiguration.notifReceived(withPushID: aps!["push_id"] as! String)
+            let cust = userInfo["custom"] as? [AnyHashable:Any]
+            let a = cust?["a"] as? [AnyHashable:Any]
+            if let push_id = a?["push_id"] as? String {
+                // signaling SwipeDK
+                SwipeConfiguration.notifReceived(withPushID: push_id)
+            }
+            
             
             if urlString != nil, let fileUrl = URL(string: urlString!) {
                 print("fileUrl: \(fileUrl)")

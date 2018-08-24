@@ -19,8 +19,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SwipeDK" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kk9-P1-kE1">
-                                <rect key="frame" x="153" y="150" width="69.5" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="152.5" y="150" width="71" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -29,7 +29,16 @@
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="ugd-MV-YXi"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="APNS Token:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LD6-yF-B5Z">
+                                <rect key="frame" x="10" y="245" width="355" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="Owj-oJ-WZI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -38,9 +47,12 @@
                         <constraints>
                             <constraint firstItem="8PN-Gp-Jmt" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-10" id="1Xu-Bl-fRF"/>
                             <constraint firstItem="8PN-Gp-Jmt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="5Fz-gJ-TV3"/>
+                            <constraint firstItem="8PN-Gp-Jmt" firstAttribute="top" secondItem="LD6-yF-B5Z" secondAttribute="bottom" constant="8" id="9Wx-yi-chX"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LD6-yF-B5Z" secondAttribute="trailing" constant="10" id="GPy-xZ-Apj"/>
                             <constraint firstItem="Kk9-P1-kE1" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="130" id="fBX-QC-WL1"/>
-                            <constraint firstItem="8PN-Gp-Jmt" firstAttribute="top" secondItem="Kk9-P1-kE1" secondAttribute="bottom" constant="100" id="fEm-K0-AjK"/>
+                            <constraint firstItem="LD6-yF-B5Z" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="kjA-SJ-Tga"/>
                             <constraint firstItem="Kk9-P1-kE1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pAA-Ry-Oka"/>
+                            <constraint firstItem="LD6-yF-B5Z" firstAttribute="top" secondItem="Kk9-P1-kE1" secondAttribute="bottom" constant="74" id="s64-Tc-5u9"/>
                             <constraint firstItem="8PN-Gp-Jmt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="sKU-bH-P6i"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
