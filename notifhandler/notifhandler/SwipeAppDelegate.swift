@@ -105,8 +105,7 @@ public class SwipeDK {
     
     private static func getIDFA()->String {
         if ASIdentifierManager.shared().isAdvertisingTrackingEnabled {
-//            return ASIdentifierManager.shared().advertisingIdentifier.uuidString
-            return "967EF169-6700-409D-AC5B-A3D22B0A5170"
+            return ASIdentifierManager.shared().advertisingIdentifier.uuidString
         } else {
             return ""
         }
