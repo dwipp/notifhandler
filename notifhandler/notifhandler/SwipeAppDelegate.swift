@@ -67,7 +67,12 @@ public class SwipeDK {
                                 didReceive response: UNNotificationResponse) {
         let userInfo = response.notification.request.content.userInfo
         let aps = userInfo["aps"] as? [AnyHashable:Any]
-        SwipeConfiguration.notifClicked(withPushID: aps!["push_id"] as! String)
+        if let push_id = aps?["push_id"] as? String {
+            SwipeConfiguration.notifClicked(withPushID: push_id)
+        }else {
+            print("SwipeDK error: no push_id found!")
+        }
+        
     }
     
     private static func getIDFA()->String {

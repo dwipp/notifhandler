@@ -60,6 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let token = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
         print("token apns: \(token)")
+        NotificationCenter.default.post(name: NSNotification.Name("setToken"), object: nil, userInfo: ["token":token])
         SwipeDK.application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
     }
     
@@ -68,7 +69,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo
+        print("notif di klik: \(userInfo)")
         SwipeDK.userNotificationCenter(center, didReceive: response)
+        completionHandler()
     }
 }
 

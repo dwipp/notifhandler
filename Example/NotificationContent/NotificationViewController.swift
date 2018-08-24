@@ -9,10 +9,11 @@
 import UIKit
 import UserNotifications
 import UserNotificationsUI
+import notifhandler
 
 class NotificationViewController: UIViewController, UNNotificationContentExtension {
 
-    @IBOutlet var label: UILabel?
+    @IBOutlet weak var imageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +21,13 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
     }
     
     func didReceive(_ notification: UNNotification) {
-        self.label?.text = notification.request.content.body
+        let userInfo = notification.request.content.userInfo
+        let aps = userInfo["aps"] as! [AnyHashable:Any]
+        let imgUrl = aps["image"] as! String
+        
+        SwipeNotification.getImage(imageUrl: imgUrl) { (image) in
+            self.imageView.image = image
+        }
     }
 
 }
