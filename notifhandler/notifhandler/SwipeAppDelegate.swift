@@ -12,7 +12,8 @@ import UserNotifications
 
 public class SwipeDK {
     private init(){}
-    private static var tempToken:Data?
+    private static var tempToken:String?
+    private static var tempOneSignalID:String?
     
     public static func configure(){
         let api = Api()
@@ -26,9 +27,11 @@ public class SwipeDK {
                     UserDefaults.standard.set(idfa, forKey: api.IDFAkey)
                     UserDefaults.standard.set(data.result.public_id, forKey: api.publicID)
                     UserDefaults.standard.set(data.result.session_id, forKey: api.sessionID)
-                    if let token = tempToken {
-                        application(UIApplication(), didRegisterForRemoteNotificationsWithDeviceToken: token)
+                    if let token = tempToken, let onesignal = tempOneSignalID {
+//                        application(UIApplication(), didRegisterForRemoteNotificationsWithDeviceToken: token)
+                        registerToken(token, andOneSignalID: onesignal)
                         tempToken = nil
+                        tempOneSignalID = nil
                     }
                 }else {
                     if let err = error {
@@ -43,15 +46,16 @@ public class SwipeDK {
         }
     }
     
-    public static func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+    public static func registerToken(_ deviceToken:String, andOneSignalID onesignalId:String){
         let api = Api()
         guard let publicId = UserDefaults.standard.string(forKey: api.publicID), let sessionId = UserDefaults.standard.string(forKey: api.sessionID) else {
             tempToken = deviceToken
+            tempOneSignalID = onesignalId
             return
         }
-        let token = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
-        api.registerToken(token, publicId: publicId, sessionId: sessionId) { (result, error) in
+        api.registerToken(deviceToken, onesignalId: onesignalId, publicId: publicId, sessionId: sessionId) { (result, error) in
             tempToken = nil
+            tempOneSignalID = nil
             if let data = result, data.code == 200 {
             }else {
                 if let err = error {
@@ -62,6 +66,26 @@ public class SwipeDK {
             }
         }
     }
+    
+    /*public static func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let api = Api()
+        guard let publicId = UserDefaults.standard.string(forKey: api.publicID), let sessionId = UserDefaults.standard.string(forKey: api.sessionID) else {
+            tempToken = deviceToken
+            return
+        }
+        let token = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
+        api.registerToken(token, onesignalId: "", publicId: publicId, sessionId: sessionId) { (result, error) in
+            tempToken = nil
+            if let data = result, data.code == 200 {
+            }else {
+                if let err = error {
+                    print("SwipeDK error: \(err)")
+                }else {
+                    print("SwipeDK error with result: \(String(describing: result?.code))")
+                }
+            }
+        }
+    }*/
     
     public static func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse) {

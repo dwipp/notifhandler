@@ -9,6 +9,7 @@
 import UIKit
 import UserNotifications
 import notifhandler
+import OneSignal
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,7 +19,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         SwipeDK.configure()
-//        SwipeDK.
+        // onesignal
+        let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
+        OneSignal.initWithLaunchOptions(launchOptions,
+                                        appId: "89d58078-9dc7-49db-9008-37d610a59513",
+                                        handleNotificationAction: nil,
+                                        settings: onesignalInitSettings)
+        
+        OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification
+        OneSignal.promptForPushNotifications(userResponse: { accepted in
+            print("User accepted notifications: \(accepted)")
+            if let regid = OneSignal.getPermissionSubscriptionState().subscriptionStatus.pushToken,
+                let userid = OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId {
+                print("regid: \(regid)")
+                print("userid: \(userid)")
+                SwipeDK.registerToken(regid, andOneSignalID: userid)
+            }
+            
+        })
         
         
         UNUserNotificationCenter.current().delegate = self
@@ -61,7 +79,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let token = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
         print("token apns: \(token)")
         NotificationCenter.default.post(name: NSNotification.Name("setToken"), object: nil, userInfo: ["token":token])
-        SwipeDK.application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
+//        SwipeDK.application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
     }
     
 

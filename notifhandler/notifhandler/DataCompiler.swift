@@ -90,11 +90,12 @@ class Api {
         }
     }
     
-    func registerToken(_ token:String, publicId:String, sessionId:String, completion:@escaping (_ result:DefaultModel?, _ error:Error?)->()) {
+    func registerToken(_ token:String, onesignalId:String, publicId:String, sessionId:String, completion:@escaping (_ result:DefaultModel?, _ error:Error?)->()) {
         let path = "push/register_token"
         let params = ["public_id":publicId,
                       "session_id":sessionId,
-                      "push_token":token]
+                      "registration_id":token,
+                      "one_signal_id":onesignalId]
         
         request(withURL: endpoint()+path, method: .post, params: params) { (data, error) in
             guard let data = data else {

@@ -56,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0107E81959F737611A31E5671A94C47B /* OneSignal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OneSignal.framework; path = iOS_SDK/OneSignalSDK/Framework/OneSignal.framework; sourceTree = "<group>"; };
 		08239D1A451A4135119F52636C67CD3F /* notifhandler.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = notifhandler.modulemap; sourceTree = "<group>"; };
 		0AD26BE4C5A1F03A530B56EC8E5DFE67 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0CE74B27362AD14D30E070603DD90083 /* Pods-Notification Service.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Notification Service.debug.xcconfig"; sourceTree = "<group>"; };
@@ -205,6 +206,14 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
+		31024DDD121568A44F4DC265C15F4D16 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0107E81959F737611A31E5671A94C47B /* OneSignal.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3465A6B0F29CFDC768845076E009B121 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,6 +240,14 @@
 			path = ../../notifhandler;
 			sourceTree = "<group>";
 		};
+		6202124E9D433C3EA7B1CF2F09917CA5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B109A558AEC0464E1C8AD13A3517ECA8 /* OneSignal */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		6D380C16A35F6A604EC4EF407B8A9C10 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -248,6 +265,7 @@
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				1D979FD70C5490C2D11ACC520C6B48B9 /* Development Pods */,
 				122DA2E5084A4393C29BE363C764795C /* Frameworks */,
+				6202124E9D433C3EA7B1CF2F09917CA5 /* Pods */,
 				6D380C16A35F6A604EC4EF407B8A9C10 /* Products */,
 				2C13CE3FE56427BD9D03CBB009FFC0BF /* Targets Support Files */,
 			);
@@ -278,6 +296,15 @@
 			);
 			name = "Pods-Notification Service";
 			path = "Target Support Files/Pods-Notification Service";
+			sourceTree = "<group>";
+		};
+		B109A558AEC0464E1C8AD13A3517ECA8 /* OneSignal */ = {
+			isa = PBXGroup;
+			children = (
+				31024DDD121568A44F4DC265C15F4D16 /* Frameworks */,
+			);
+			name = OneSignal;
+			path = OneSignal;
 			sourceTree = "<group>";
 		};
 		E7243902D9A696816E2E9C8F1D699B7E /* Pods-NotificationContent */ = {

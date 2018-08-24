@@ -1,8 +1,14 @@
 PODS:
   - notifhandler (0.1.8)
+  - OneSignal (2.8.6)
 
 DEPENDENCIES:
   - notifhandler (from `../notifhandler`)
+  - OneSignal (< 3.0, >= 2.6.2)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - OneSignal
 
 EXTERNAL SOURCES:
   notifhandler:
@@ -10,7 +16,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   notifhandler: 8bebcc1f6b6cca0149a48a020a8091eabaf96b1a
+  OneSignal: 0173a4e48c620089e4a1aba44c82d4148547d812
 
-PODFILE CHECKSUM: a79d61acfa725c09e45af43bc87d7139785acd51
+PODFILE CHECKSUM: 27d1e11109964985a4ff7ba467116a56b39e1c81
 
 COCOAPODS: 1.5.3
