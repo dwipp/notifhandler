@@ -8,14 +8,15 @@
 import Foundation
 import AdSupport
 import UserNotifications
-
+import OneSignal
 
 public class SwipeDK {
     private init(){}
     private static var tempToken:String?
     private static var tempOneSignalID:String?
+    private static let onesignalAppID = "89d58078-9dc7-49db-9008-37d610a59513"
     
-    public static func configure(){
+    public static func configure(didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?){
         let api = Api()
         let idfa = getIDFA()
         let savedIDFA = UserDefaults.standard.string(forKey: api.IDFAkey)
@@ -33,6 +34,7 @@ public class SwipeDK {
                         tempToken = nil
                         tempOneSignalID = nil
                     }
+                    setupOneSignal(launchOptions: launchOptions)
                 }else {
                     if let err = error {
                         print("SwipeDK error: \(err)")
@@ -103,10 +105,33 @@ public class SwipeDK {
     
     private static func getIDFA()->String {
         if ASIdentifierManager.shared().isAdvertisingTrackingEnabled {
-            return ASIdentifierManager.shared().advertisingIdentifier.uuidString
+//            return ASIdentifierManager.shared().advertisingIdentifier.uuidString
+            return "967EF169-6700-409D-AC5B-A3D22B0A5170"
         } else {
             return ""
         }
     }
     
+}
+
+extension SwipeDK {
+    private static func setupOneSignal(launchOptions: [UIApplicationLaunchOptionsKey: Any]?){
+        let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
+        OneSignal.initWithLaunchOptions(launchOptions,
+                                        appId: onesignalAppID,
+                                        handleNotificationAction: nil,
+                                        settings: onesignalInitSettings)
+        
+        OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification
+        OneSignal.promptForPushNotifications(userResponse: { accepted in
+            print("User accepted notifications: \(accepted)")
+            if let regid = OneSignal.getPermissionSubscriptionState().subscriptionStatus.pushToken,
+                let userid = OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId {
+                print("regid: \(regid)")
+                print("userid: \(userid)")
+                SwipeDK.registerToken(regid, andOneSignalID: userid)
+            }
+            
+        })
+    }
 }

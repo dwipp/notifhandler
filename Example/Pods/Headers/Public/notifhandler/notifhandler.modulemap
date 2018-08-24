@@ -1,0 +1,6 @@
+module notifhandler {
+  umbrella header "notifhandler-umbrella.h"
+
+  export *
+  module * { export * }
+}

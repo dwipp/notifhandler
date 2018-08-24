@@ -20,5 +20,6 @@ Pod::Spec.new do |s|
   s.source_files = "notifhandler/**/*"
 #s.source_files  = "Classes", "Classes/**/*.{h,m}"
   s.frameworks = "UIKit", "UserNotifications"
+  s.dependency "OneSignal", ">= 2.6.2", "< 3.0"
 
 end
