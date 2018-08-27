@@ -71,26 +71,6 @@ public class SwipeDK {
         }
     }
     
-    /*public static func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        let api = Api()
-        guard let publicId = UserDefaults.standard.string(forKey: api.publicID), let sessionId = UserDefaults.standard.string(forKey: api.sessionID) else {
-            tempToken = deviceToken
-            return
-        }
-        let token = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
-        api.registerToken(token, onesignalId: "", publicId: publicId, sessionId: sessionId) { (result, error) in
-            tempToken = nil
-            if let data = result, data.code == 200 {
-            }else {
-                if let err = error {
-                    print("SwipeDK error: \(err)")
-                }else {
-                    print("SwipeDK error with result: \(String(describing: result?.code))")
-                }
-            }
-        }
-    }*/
-    
     public static func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse) {
         let userInfo = response.notification.request.content.userInfo
@@ -129,7 +109,8 @@ extension SwipeDK {
                     let userid = OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId {
                     print("regid: \(regid)")
                     print("userid: \(userid)")
-                    OneSignal.sendTag("app_id", value: publisher)
+                    OneSignal.sendTag("app_id", value: onesignalAppID)
+                    OneSignal.sendTag("publisher", value: publisher)
                     SwipeDK.registerToken(regid, andOneSignalID: userid)
                 }
                 
