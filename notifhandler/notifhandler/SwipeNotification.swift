@@ -52,13 +52,13 @@ public class SwipeNotification {
             
             var urlString:String? = nil
             let userInfo = request.content.userInfo
-            let att = userInfo["att"] as? [AnyHashable:Any]
-            if let urlImageString = att?["id"] as? String {
+            let cust = userInfo["custom"] as? [AnyHashable:Any]
+            let a = cust?["a"] as? [AnyHashable:Any]
+//            let att = userInfo["att"] as? [AnyHashable:Any]
+            if let urlImageString = a?["image"] as? String {
                 urlString = urlImageString
             }
             
-            let cust = userInfo["custom"] as? [AnyHashable:Any]
-            let a = cust?["a"] as? [AnyHashable:Any]
             if let push_id = a?["push_id"] as? String {
                 // signaling SwipeDK
                 SwipeConfiguration.notifReceived(withPushID: push_id)

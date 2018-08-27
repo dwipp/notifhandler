@@ -16,6 +16,7 @@ struct RegistrationModel: Decodable {
 struct RegModel: Decodable {
     let public_id:String
     let session_id:String
+    let publisher:String
 }
 
 struct DefaultModel: Decodable {
