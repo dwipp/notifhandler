@@ -96,14 +96,23 @@ extension Reachability {
         return ssid
     }
     
-    func getTelephonyNetwork() -> String?{
+    func getTelephonyNetwork() -> (String?, String?){
         let networkInfo = CTTelephonyNetworkInfo()
         let carrierType = networkInfo.currentRadioAccessTechnology
+        let providerName = networkInfo.subscriberCellularProvider?.carrierName
         switch carrierType{
-        case CTRadioAccessTechnologyGPRS?,CTRadioAccessTechnologyEdge?,CTRadioAccessTechnologyCDMA1x?: return "2G"
-        case CTRadioAccessTechnologyWCDMA?,CTRadioAccessTechnologyHSDPA?,CTRadioAccessTechnologyHSUPA?,CTRadioAccessTechnologyCDMAEVDORev0?,CTRadioAccessTechnologyCDMAEVDORevA?,CTRadioAccessTechnologyCDMAEVDORevB?,CTRadioAccessTechnologyeHRPD?: return "3G"
-        case CTRadioAccessTechnologyLTE?: return "4G"
-        default: return nil
+        case CTRadioAccessTechnologyGPRS?: return (providerName, "GPRS")
+        case CTRadioAccessTechnologyEdge?: return (providerName, "Edge")
+        case CTRadioAccessTechnologyCDMA1x?: return (providerName, "CDMA1x")
+        case CTRadioAccessTechnologyWCDMA?: return (providerName, "WCDMA")
+        case CTRadioAccessTechnologyHSDPA?: return (providerName, "HSDPA")
+        case CTRadioAccessTechnologyHSUPA?: return (providerName, "HSUPA")
+        case CTRadioAccessTechnologyCDMAEVDORev0?: return (providerName, "CDMAEVDORev0")
+        case CTRadioAccessTechnologyCDMAEVDORevA?: return (providerName, "CDMAEVDORevA")
+        case CTRadioAccessTechnologyCDMAEVDORevB?: return (providerName, "CDMAEVDORevB")
+        case CTRadioAccessTechnologyeHRPD?: return (providerName, "HRPD")
+        case CTRadioAccessTechnologyLTE?: return (providerName, "LTE")
+        default: return (nil, nil)
         }
     }
     

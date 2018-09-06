@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct SwipeCollect {
+public struct SwipeCollect {
     static func getTimeZone()->String{
         var utcInSecond = TimeZone.current.secondsFromGMT()
         var frontPrefix = "+"
@@ -40,15 +40,15 @@ struct SwipeCollect {
         return Locale.current.regionCode
     }
     
-    static func getNetworkType() -> String{
-        guard let status = Network.reachability?.status else {return "run in simulator"}
+    public static func getNetworkType() -> String?{
+        guard let status = Network.reachability?.status else {return nil}
         switch status {
         case .unreachable:
             return status.rawValue
         case .wifi:
             return "\(status.rawValue) \(Network.reachability?.getWiFiSsid() ?? "")"
         case .wwan:
-            return "\(status.rawValue) \(Network.reachability?.getTelephonyNetwork() ?? "")"
+            return "\(status.rawValue) \(Network.reachability?.getTelephonyNetwork().0 ?? "") \(Network.reachability?.getTelephonyNetwork().1 ?? "")"
         }
     }
     

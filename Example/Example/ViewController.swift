@@ -8,6 +8,7 @@
 
 import UIKit
 import notifhandler
+import Foundation
 
 class ViewController: UIViewController {
     @IBOutlet weak var lblToken: UILabel!
@@ -20,7 +21,8 @@ class ViewController: UIViewController {
         lblToken.addGestureRecognizer(tapToken)
         lblToken.isUserInteractionEnabled = false
         
-        
+        let network = SwipeCollect.getNetworkType()
+        print("network: \(network)")
     }
     
     deinit {
@@ -54,4 +56,3 @@ class ViewController: UIViewController {
     }
 
 }
-

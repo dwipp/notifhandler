@@ -19,6 +19,7 @@ public class SwipeDK {
     public static func configure(didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?){
         let api = Api()
         let idfa = getIDFA()
+        checkNetwork()
         let savedIDFA = UserDefaults.standard.string(forKey: api.IDFAkey)
         if savedIDFA != idfa {
             api.register(withIDFA: idfa) { (result, error) in
@@ -30,7 +31,6 @@ public class SwipeDK {
                     UserDefaults.standard.set(data.result.public_id, forKey: api.publicID)
                     UserDefaults.standard.set(data.result.session_id, forKey: api.sessionID)
                     if let token = tempToken, let onesignal = tempOneSignalID {
-//                        application(UIApplication(), didRegisterForRemoteNotificationsWithDeviceToken: token)
                         registerToken(token, andOneSignalID: onesignal)
                         tempToken = nil
                         tempOneSignalID = nil
@@ -89,6 +89,21 @@ public class SwipeDK {
             return ASIdentifierManager.shared().advertisingIdentifier.uuidString
         } else {
             return ""
+        }
+    }
+    
+    private static func checkNetwork(){
+        do {
+            Network.reachability = try Reachability(hostname: "www.google.com")
+            do {
+                try Network.reachability?.start()
+            } catch let error as Network.Error {
+                print(error)
+            } catch {
+                print(error)
+            }
+        } catch {
+            print(error)
         }
     }
     
