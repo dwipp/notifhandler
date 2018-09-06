@@ -20,9 +20,6 @@ class ViewController: UIViewController {
         let tapToken = UITapGestureRecognizer(target: self, action: #selector(self.copyToken))
         lblToken.addGestureRecognizer(tapToken)
         lblToken.isUserInteractionEnabled = false
-        
-        let network = SwipeCollect.getNetworkType()
-        print("network: \(network)")
     }
     
     deinit {
