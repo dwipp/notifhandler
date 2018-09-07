@@ -9,6 +9,7 @@
 import Foundation
 
 struct Header {
+    static public let app_id = "1808000001"
     static private func darwin() -> String {
         var sysinfo = utsname()
         uname(&sysinfo)
@@ -48,7 +49,7 @@ struct Header {
         let header:[String:String] = [
             "sd-user-agent":self.userAgent(),
             "sd-client-UTC": SwipeCollect.getTimeZone(),
-            "sd-app-id":"1808000001",
+            "sd-app-id":app_id,
             "sd-app-secret":"4EB320AA819248AA6F7F9C412A6ADB67D83293B9441D16BB83764E6FDE9F9948",
             "Content-Type":"application/json"]
         return header

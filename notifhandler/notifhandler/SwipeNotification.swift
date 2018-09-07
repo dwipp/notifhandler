@@ -48,7 +48,7 @@ public class SwipeNotification {
         
         if let bestAttemptContent = bestAttemptContent {
             // Modify the notification content here...
-            bestAttemptContent.title = "\(bestAttemptContent.title) [modified]"
+            bestAttemptContent.title = "\(bestAttemptContent.title)"
             
             var urlString:String? = nil
             let userInfo = request.content.userInfo

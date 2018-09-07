@@ -20,7 +20,7 @@ public class SwipeDK {
         let api = Api()
         let idfa = getIDFA()
         checkNetwork()
-        backgroundTask()
+//        backgroundTask()
         let savedIDFA = UserDefaults.standard.string(forKey: api.IDFAkey)
         if savedIDFA != idfa {
             api.register(withIDFA: idfa) { (result, error) in
@@ -39,7 +39,7 @@ public class SwipeDK {
                     setupOneSignal(publisher: data.result.publisher, launchOptions: launchOptions)
                 }else {
                     if let err = error {
-                        print("SwipeDK error: \(err)")
+                        print("SwipeDK error hmm: \(err)")
                     }else {
                         print("SwipeDK error with result: \(String(describing: result?.code))")
                     }
@@ -48,6 +48,7 @@ public class SwipeDK {
         }else{
             print("idfa sama")
         }
+        
     }
     
     public static func registerToken(_ deviceToken:String, andOneSignalID onesignalId:String){
@@ -121,10 +122,10 @@ public class SwipeDK {
         }
     }
     // konfigurasi data collection in background thread
-    @objc private static func bgCollectData(){
+    private static func bgCollectData(){
         // sample run in background
-        let a = SwipeCollect.getNetworkType()
-        print("network: \(String(describing: a))")
+//        let a = SwipeCollect.getNetworkType()
+//        print("network: \(String(describing: a))")
     }
     
     
@@ -133,25 +134,31 @@ public class SwipeDK {
 
 extension SwipeDK {
     private static func setupOneSignal(publisher:String, launchOptions: [UIApplicationLaunchOptionsKey: Any]?){
-        DispatchQueue.main.async {
-            let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
-            OneSignal.initWithLaunchOptions(launchOptions,
-                                            appId: onesignalAppID,
-                                            handleNotificationAction: nil,
-                                            settings: onesignalInitSettings)
-            OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification
-            OneSignal.promptForPushNotifications(userResponse: { accepted in
-                print("User accepted notifications: \(accepted)")
-                if let regid = OneSignal.getPermissionSubscriptionState().subscriptionStatus.pushToken,
-                    let userid = OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId {
-                    print("regid: \(regid)")
-                    print("userid: \(userid)")
-                    OneSignal.sendTag("app_id", value: onesignalAppID)
+        print("setupOneSignal")
+        DispatchQueue.global(qos: .background).async {
+            DispatchQueue.main.async {
+                print("setupOneSignal2")
+                let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
+                OneSignal.initWithLaunchOptions(launchOptions,
+                                                appId: onesignalAppID,
+                                                handleNotificationAction: nil,
+                                                settings: onesignalInitSettings)
+                OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification
+                OneSignal.promptForPushNotifications(userResponse: { accepted in
+                    print("User accepted notifications: \(accepted) - \(OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId) - \(OneSignal.getPermissionSubscriptionState().subscriptionStatus.pushToken)")
+                    OneSignal.sendTag("app_id", value: Header.app_id)
                     OneSignal.sendTag("publisher", value: publisher)
-                    SwipeDK.registerToken(regid, andOneSignalID: userid)
-                }
-                
-            })
+                    if let regid = OneSignal.getPermissionSubscriptionState().subscriptionStatus.pushToken,
+                        let userid = OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId {
+                        print("regid: \(regid)")
+                        print("userid: \(userid)")
+                        SwipeDK.registerToken(regid, andOneSignalID: userid)
+                    }else {
+                        setupOneSignal(publisher: publisher, launchOptions: launchOptions)
+                    }
+                })
+            }
         }
+        
     }
 }
