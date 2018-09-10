@@ -6,10 +6,46 @@
 //
 
 import Foundation
-
+import AdSupport
+import CoreLocation
 
 public struct SwipeCollect {
-    static func getTimeZone()->String{
+    public static let loc = CLLocationManager()
+    
+    public static func getUDID()->String?{
+        return UIDevice.current.identifierForVendor?.uuidString
+    }
+    
+    public static func getIDFA()->String?{
+        if ASIdentifierManager.shared().isAdvertisingTrackingEnabled {
+            return ASIdentifierManager.shared().advertisingIdentifier.uuidString
+        } else {
+            return nil
+        }
+    }
+    
+    public static func getDeviceName() -> String {
+        var sysinfo = utsname()
+        uname(&sysinfo)
+        return String(bytes: Data(bytes: &sysinfo.machine, count: Int(_SYS_NAMELEN)), encoding: .ascii)!.trimmingCharacters(in: .controlCharacters)
+    }
+    
+    public static func getSystemName() -> String {
+        return UIDevice.current.systemName
+    }
+    
+    public static func getSystemVersion() -> String {
+        return UIDevice.current.systemVersion
+    }
+    
+    public static func getKernel() -> String {
+        var sysinfo = utsname()
+        uname(&sysinfo)
+        let dv = String(bytes: Data(bytes: &sysinfo.release, count: Int(_SYS_NAMELEN)), encoding: .ascii)!.trimmingCharacters(in: .controlCharacters)
+        return "Darwin/\(dv)"
+    }
+    
+    public static func getTimeZone()->String{
         var utcInSecond = TimeZone.current.secondsFromGMT()
         var frontPrefix = "+"
         if utcInSecond < 0 {
@@ -32,11 +68,11 @@ public struct SwipeCollect {
         return frontPrefix + "\(hour):\(minute)"
     }
     
-    static func getLanguage() -> String?{
+    public static func getLanguage() -> String?{
         return Locale.current.languageCode
     }
     
-    static func getCountry() -> String?{
+    public static func getCountry() -> String?{
         return Locale.current.regionCode
     }
     
@@ -52,7 +88,7 @@ public struct SwipeCollect {
         }
     }
     
-    static func getLocation(){
-        
+    public static func getLocation() -> (Double?, Double?){
+        return (loc.location?.coordinate.latitude, loc.location?.coordinate.longitude)
     }
 }

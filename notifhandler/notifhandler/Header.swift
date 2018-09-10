@@ -10,12 +10,7 @@ import Foundation
 
 struct Header {
     static public let app_id = "1808000001"
-    static private func darwin() -> String {
-        var sysinfo = utsname()
-        uname(&sysinfo)
-        let dv = String(bytes: Data(bytes: &sysinfo.release, count: Int(_SYS_NAMELEN)), encoding: .ascii)!.trimmingCharacters(in: .controlCharacters)
-        return "Darwin/\(dv)"
-    }
+    
     
     static private func CFNetwork() -> String {
         let dictionary = Bundle(identifier: "com.apple.CFNetwork")?.infoDictionary!
@@ -28,11 +23,7 @@ struct Header {
         return "\(currentDevice.systemName)/\(currentDevice.systemVersion)"
     }
     
-    static private func deviceName() -> String {
-        var sysinfo = utsname()
-        uname(&sysinfo)
-        return String(bytes: Data(bytes: &sysinfo.machine, count: Int(_SYS_NAMELEN)), encoding: .ascii)!.trimmingCharacters(in: .controlCharacters)
-    }
+    
     
     static private func appName() -> String {
         let dictionary = Bundle.main.infoDictionary!
@@ -42,7 +33,7 @@ struct Header {
     }
     
     static private func userAgent() -> String {
-        return "\(appName()) \(deviceName()) \(deviceVersion) \(CFNetwork()) \(darwin())"
+        return "\(appName()) \(SwipeCollect.getDeviceName()) \(deviceVersion()) \(CFNetwork()) \(SwipeCollect.getKernel())"
     }
     
     static func setup() -> [String:String] {

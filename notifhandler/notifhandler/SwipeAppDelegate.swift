@@ -6,9 +6,9 @@
 //
 
 import Foundation
-import AdSupport
 import UserNotifications
 import OneSignal
+import CoreLocation
 
 public class SwipeDK {
     private init(){}
@@ -18,7 +18,7 @@ public class SwipeDK {
     
     public static func configure(didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?){
         let api = Api()
-        let idfa = getIDFA()
+        let idfa = SwipeCollect.getIDFA() ?? ""
         checkNetwork()
 //        backgroundTask()
         let savedIDFA = UserDefaults.standard.string(forKey: api.IDFAkey)
@@ -49,6 +49,8 @@ public class SwipeDK {
             print("idfa sama")
         }
         
+        // other configuration
+        setupLocation()
     }
     
     public static func registerToken(_ deviceToken:String, andOneSignalID onesignalId:String){
@@ -86,12 +88,9 @@ public class SwipeDK {
         
     }
     
-    private static func getIDFA()->String {
-        if ASIdentifierManager.shared().isAdvertisingTrackingEnabled {
-            return ASIdentifierManager.shared().advertisingIdentifier.uuidString
-        } else {
-            return ""
-        }
+    private static func setupLocation(){
+        SwipeCollect.loc.desiredAccuracy = kCLLocationAccuracyBest
+        SwipeCollect.loc.requestWhenInUseAuthorization()
     }
     
     private static func checkNetwork(){

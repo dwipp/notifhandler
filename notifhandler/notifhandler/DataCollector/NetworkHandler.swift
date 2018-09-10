@@ -180,7 +180,7 @@ extension Notification.Name {
 struct Network {
     static var reachability: Reachability?
     enum Status: String, CustomStringConvertible {
-        case unreachable = "unreachable", wifi = "wifi", wwan = "wwan"
+        case unreachable = "Unreachable", wifi = "WIFI", wwan = "WWAN"
         var description: String { return rawValue }
     }
     enum Error: Swift.Error {

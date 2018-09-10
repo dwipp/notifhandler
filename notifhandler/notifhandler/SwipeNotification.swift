@@ -54,7 +54,6 @@ public class SwipeNotification {
             let userInfo = request.content.userInfo
             let cust = userInfo["custom"] as? [AnyHashable:Any]
             let a = cust?["a"] as? [AnyHashable:Any]
-//            let att = userInfo["att"] as? [AnyHashable:Any]
             if let urlImageString = a?["image"] as? String {
                 urlString = urlImageString
             }
