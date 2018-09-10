@@ -34,6 +34,17 @@ class SubFeatureViewController: UIViewController {
             let lat = DataModel.init(title: "Latitude", subtitle: "\(loc.0 ?? 0)", isSubbed: false)
             let lon = DataModel.init(title: "Longitude", subtitle: "\(loc.1 ?? 0)", isSubbed: false)
             data.append(contentsOf: [lat, lon])
+        }else if key == "Contacts" {
+            SwipeCollect.getContacts { (contacts, error) in
+                for contact in contacts {
+                    let p = DataModel.init(title: "\(contact.firstname) \(contact.lastname)", subtitle: contact.phone.first?.value.stringValue ?? "", isSubbed: false)
+                    self.data.append(p)
+                }
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+                
+            }
         }
     }
     

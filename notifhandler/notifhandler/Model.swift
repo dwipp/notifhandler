@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Contacts
 
 struct RegistrationModel: Decodable {
     let code:Int
@@ -21,4 +22,10 @@ struct RegModel: Decodable {
 
 struct DefaultModel: Decodable {
     let code:Int
+}
+
+public struct ContactModel {
+    public let firstname:String
+    public let lastname:String
+    public let phone:[CNLabeledValue<CNPhoneNumber>]
 }

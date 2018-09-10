@@ -17,7 +17,7 @@ class FeatureViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Data Collection"
+        self.title = "SwipeDK"
         collectData()
         setupTable()
         // Do any additional setup after loading the view.
@@ -33,7 +33,8 @@ class FeatureViewController: UIViewController {
         let country = DataModel.init(title: "Country", subtitle: SwipeCollect.getCountry() ?? "Not found", isSubbed: false)
         let network = DataModel.init(title: "Network Type", subtitle: SwipeCollect.getNetworkType() ?? "Unreachable", isSubbed: false)
         let location = DataModel.init(title: "Location", subtitle: subbed, isSubbed: true)
-        data.append(contentsOf: [udid, idfa, type, os, timezone, lang, country, network, location])
+        let contact = DataModel.init(title: "Contacts", subtitle: subbed, isSubbed: true)
+        data.append(contentsOf: [udid, idfa, type, os, timezone, lang, country, network, location, contact])
     }
     
     private func setupTable(){
