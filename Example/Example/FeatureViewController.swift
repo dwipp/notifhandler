@@ -18,12 +18,17 @@ class FeatureViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "SwipeDK"
-        collectData()
         setupTable()
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        collectData()
+        self.tableView.reloadData()
+    }
+    
     private func collectData(){
+        data.removeAll()
         let udid = DataModel.init(title: "UDID", subtitle: SwipeCollect.getUDID() ?? "Not found", isSubbed: false)
         let idfa = DataModel.init(title: "IDFA", subtitle: SwipeCollect.getIDFA() ?? "Check your setting", isSubbed: false)
         let type = DataModel.init(title: "Type", subtitle: SwipeCollect.getDeviceName(), isSubbed: false)
