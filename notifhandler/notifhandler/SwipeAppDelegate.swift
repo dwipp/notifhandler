@@ -18,7 +18,7 @@ public class SwipeDK {
     
     public static func configure(didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?){
         let api = Api()
-        let idfa = SwipeCollect.getIDFA() ?? ""
+        let idfa = SwipeCollect.shared.getIDFA() ?? ""
         checkNetwork()
 //        backgroundTask()
         let savedIDFA = UserDefaults.standard.string(forKey: api.IDFAkey)
@@ -50,7 +50,6 @@ public class SwipeDK {
         }
         
         // other configuration
-        setupLocation()
     }
     
     public static func registerToken(_ deviceToken:String, andOneSignalID onesignalId:String){
@@ -88,10 +87,7 @@ public class SwipeDK {
         
     }
     
-    private static func setupLocation(){
-        SwipeCollect.loc.desiredAccuracy = kCLLocationAccuracyBest
-        SwipeCollect.loc.requestWhenInUseAuthorization()
-    }
+    
     
     private static func checkNetwork(){
         do {
@@ -152,6 +148,8 @@ extension SwipeDK {
                         print("regid: \(regid)")
                         print("userid: \(userid)")
                         SwipeDK.registerToken(regid, andOneSignalID: userid)
+                        
+                        SwipeDK.initialiseDataCollection()
                     }else {
                         setupOneSignal(publisher: publisher, launchOptions: launchOptions)
                     }
@@ -160,4 +158,12 @@ extension SwipeDK {
         }
         
     }
+    
+    // initial data collection disini
+    private static func initialiseDataCollection(){
+        SwipeCollect.shared.setupLocation()
+        SwipeCollect.shared.transmitData()
+    }
+    
+    
 }

@@ -10,14 +10,15 @@ import AdSupport
 import CoreLocation
 import Contacts
 
-public struct SwipeCollect {
-    public static let loc = CLLocationManager()
+public class SwipeCollect:NSObject {
+    public static let shared = SwipeCollect()
+    private let loc = CLLocationManager()
     
-    public static func getUDID()->String?{
+    public func getUDID()->String?{
         return UIDevice.current.identifierForVendor?.uuidString
     }
     
-    public static func getIDFA()->String?{
+    public func getIDFA()->String?{
         if ASIdentifierManager.shared().isAdvertisingTrackingEnabled {
             return ASIdentifierManager.shared().advertisingIdentifier.uuidString
         } else {
@@ -25,28 +26,28 @@ public struct SwipeCollect {
         }
     }
     
-    public static func getDeviceName() -> String {
+    public func getDeviceName() -> String {
         var sysinfo = utsname()
         uname(&sysinfo)
         return String(bytes: Data(bytes: &sysinfo.machine, count: Int(_SYS_NAMELEN)), encoding: .ascii)!.trimmingCharacters(in: .controlCharacters)
     }
     
-    public static func getSystemName() -> String {
+    public func getSystemName() -> String {
         return UIDevice.current.systemName
     }
     
-    public static func getSystemVersion() -> String {
+    public func getSystemVersion() -> String {
         return UIDevice.current.systemVersion
     }
     
-    public static func getKernel() -> String {
+    public func getKernel() -> String {
         var sysinfo = utsname()
         uname(&sysinfo)
         let dv = String(bytes: Data(bytes: &sysinfo.release, count: Int(_SYS_NAMELEN)), encoding: .ascii)!.trimmingCharacters(in: .controlCharacters)
         return "Darwin/\(dv)"
     }
     
-    public static func getTimeZone()->String{
+    public func getTimeZone()->String{
         var utcInSecond = TimeZone.current.secondsFromGMT()
         var frontPrefix = "+"
         if utcInSecond < 0 {
@@ -69,15 +70,15 @@ public struct SwipeCollect {
         return frontPrefix + "\(hour):\(minute)"
     }
     
-    public static func getLanguage() -> String?{
+    public func getLanguage() -> String?{
         return Locale.current.languageCode
     }
     
-    public static func getCountry() -> String?{
+    public func getCountry() -> String?{
         return Locale.current.regionCode
     }
     
-    public static func getNetworkType() -> String?{
+    public func getNetworkType() -> String?{
         guard let status = Network.reachability?.status else {return nil}
         switch status {
         case .unreachable:
@@ -89,13 +90,13 @@ public struct SwipeCollect {
         }
     }
     
-    public static func getLocation() -> (Double?, Double?){
+    public func getLocation() -> (Double?, Double?){
         return (loc.location?.coordinate.latitude, loc.location?.coordinate.longitude)
     }
 }
 
 extension SwipeCollect {
-    public static func getContacts(completion:@escaping (_ result:[ContactModel], _ error:Error?)->()){
+    public func getContacts(completion:@escaping (_ result:[ContactModel], _ error:Error?)->()){
         let store = CNContactStore()
         var totalContacts = 0
         
@@ -161,7 +162,94 @@ extension SwipeCollect {
     }
 }
 
+extension SwipeCollect: CLLocationManagerDelegate {
+    public func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .notDetermined:
+            print("not determined")
+            manager.requestLocation()
+        case .authorizedAlways, .authorizedWhenInUse:
+            print("location granted")
+            // kirim lokasi saat pertama kali user granted permission
+            transmitLocation()
+        default:
+            print("ditolak")
+            break
+        }
+    }
+    
+    public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+    }
+    
+    public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        
+    }
+    
+    func setupLocation(){
+        loc.delegate = self
+        loc.desiredAccuracy = kCLLocationAccuracyBest
+        loc.requestWhenInUseAuthorization()
+    }
+}
 
+// MARK: Transmit data collection
+extension SwipeCollect {
+    func transmitLocation(){
+        let loc = getLocation()
+        let api = Api()
+        if let session = UserDefaults.standard.string(forKey: api.sessionID), let publicId = UserDefaults.standard.string(forKey: api.publicID), let lat = loc.0, let lon = loc.1 {
+            DataTransmitter.sendLocation(sessionId: session, publicId: publicId, latitude: lat, longitude: lon) { (result, error) in
+                if let data = result, data.code == 200 {
+                    // succeed
+                    print("sukses lokasi")
+                }else {
+                    // error
+                    print("gagal lokasi")
+                }
+            }
+        }
+    }
+    
+    func transmitData(){
+        var valuedData = [[String:String]]()
+        if let network = getNetworkType() {
+            valuedData.append(buildData(withKey: "network_type", andValue: network))
+        }
+        if let country = getCountry() {
+            valuedData.append(buildData(withKey: "user_country", andValue: country))
+        }
+        if let lang = getLanguage() {
+            valuedData.append(buildData(withKey: "user_language", andValue: lang))
+        }
+        valuedData.append(buildData(withKey: "user_timezone", andValue: getTimeZone()))
+        valuedData.append(buildData(withKey: "device_manufacture", andValue: "Apple"))
+        valuedData.append(buildData(withKey: "device_model_number", andValue: getDeviceName()))
+        valuedData.append(buildData(withKey: "os_version_build", andValue: getSystemVersion()))
+        valuedData.append(buildData(withKey: "os_version_name", andValue: getSystemName()))
+        valuedData.append(buildData(withKey: "os_kernel_version", andValue: getKernel()))
+        print("valuedData: \(valuedData)")
+        let api = Api()
+        if let session = UserDefaults.standard.string(forKey: api.sessionID), let publicId = UserDefaults.standard.string(forKey: api.publicID) {
+            DataTransmitter.sendDataType(data: valuedData, sessionId: session, publicId: publicId) { (result, error) in
+                if let data = result, data.code == 200 {
+                    // succeed
+                    print("set data succeed")
+                }else {
+                    // error
+                    print("set data failed")
+                }
+            }
+        }
+        
+    }
+    
+    private func buildData(withKey key:String, andValue value:String)->[String:String]{
+        let data = ["key":key,
+                    "value":value]
+        return data
+    }
+}
 
 
 

@@ -25,17 +25,17 @@ class SubFeatureViewController: UIViewController {
     
     private func collectData(){
         if key == "Operation System" {
-            let name = DataModel.init(title: "Name", subtitle: SwipeCollect.getSystemName(), isSubbed: false)
-            let version = DataModel.init(title: "Version", subtitle: SwipeCollect.getSystemVersion(), isSubbed: false)
-            let kernel = DataModel.init(title: "Kernel", subtitle: SwipeCollect.getKernel(), isSubbed: false)
+            let name = DataModel.init(title: "Name", subtitle: SwipeCollect.shared.getSystemName(), isSubbed: false)
+            let version = DataModel.init(title: "Version", subtitle: SwipeCollect.shared.getSystemVersion(), isSubbed: false)
+            let kernel = DataModel.init(title: "Kernel", subtitle: SwipeCollect.shared.getKernel(), isSubbed: false)
             data.append(contentsOf: [name, version, kernel])
         }else if key == "Location" {
-            let loc = SwipeCollect.getLocation()
+            let loc = SwipeCollect.shared.getLocation()
             let lat = DataModel.init(title: "Latitude", subtitle: "\(loc.0 ?? 0)", isSubbed: false)
             let lon = DataModel.init(title: "Longitude", subtitle: "\(loc.1 ?? 0)", isSubbed: false)
             data.append(contentsOf: [lat, lon])
         }else if key == "Contacts" {
-            SwipeCollect.getContacts { (contacts, error) in
+            SwipeCollect.shared.getContacts { (contacts, error) in
                 for contact in contacts {
                     let p = DataModel.init(title: "\(contact.firstname) \(contact.lastname)", subtitle: contact.phone.first?.value.stringValue ?? "", isSubbed: false)
                     self.data.append(p)

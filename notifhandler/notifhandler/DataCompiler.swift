@@ -114,6 +114,8 @@ class Api {
         
     }
     
+    
+    
 }
 
 public class SwipeConfiguration {

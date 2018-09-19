@@ -33,13 +33,13 @@ struct Header {
     }
     
     static private func userAgent() -> String {
-        return "\(appName()) \(SwipeCollect.getDeviceName()) \(deviceVersion()) \(CFNetwork()) \(SwipeCollect.getKernel())"
+        return "\(appName()) \(SwipeCollect.shared.getDeviceName()) \(deviceVersion()) \(CFNetwork()) \(SwipeCollect.shared.getKernel())"
     }
     
     static func setup() -> [String:String] {
         let header:[String:String] = [
             "sd-user-agent":self.userAgent(),
-            "sd-client-UTC": SwipeCollect.getTimeZone(),
+            "sd-client-UTC": SwipeCollect.shared.getTimeZone(),
             "sd-app-id":app_id,
             "sd-app-secret":"4EB320AA819248AA6F7F9C412A6ADB67D83293B9441D16BB83764E6FDE9F9948",
             "Content-Type":"application/json"]
