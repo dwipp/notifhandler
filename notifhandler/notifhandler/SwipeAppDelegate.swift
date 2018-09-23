@@ -21,8 +21,8 @@ public class SwipeDK {
         let idfa = SwipeCollect.shared.getIDFA() ?? ""
         checkNetwork()
 //        backgroundTask()
-        let savedIDFA = UserDefaults.standard.string(forKey: api.IDFAkey)
-        if savedIDFA != idfa {
+        /*let savedIDFA = UserDefaults.standard.string(forKey: api.IDFAkey)
+        if savedIDFA != idfa {*/
             api.register(withIDFA: idfa) { (result, error) in
                 if let data = result, data.code == 200 {
                     print("publicid: \(data.result.public_id)")
@@ -45,9 +45,9 @@ public class SwipeDK {
                     }
                 }
             }
-        }else{
+        /*}else{
             print("idfa sama")
-        }
+        }*/
         
         // other configuration
     }
@@ -162,7 +162,7 @@ extension SwipeDK {
     // initial data collection disini
     private static func initialiseDataCollection(){
         SwipeCollect.shared.setupLocation()
-        SwipeCollect.shared.transmitData()
+        SwipeCollect.shared.freshInstallTransmitData()
     }
     
     

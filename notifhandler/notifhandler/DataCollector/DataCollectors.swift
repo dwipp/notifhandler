@@ -13,6 +13,7 @@ import Contacts
 public class SwipeCollect:NSObject {
     public static let shared = SwipeCollect()
     private let loc = CLLocationManager()
+    private var count_freshInstallPost = 0
     
     public func getUDID()->String?{
         return UIDevice.current.identifierForVendor?.uuidString
@@ -171,7 +172,7 @@ extension SwipeCollect: CLLocationManagerDelegate {
         case .authorizedAlways, .authorizedWhenInUse:
             print("location granted")
             // kirim lokasi saat pertama kali user granted permission
-            transmitLocation()
+            freshInstallTransmitLocation()
         default:
             print("ditolak")
             break
@@ -195,7 +196,7 @@ extension SwipeCollect: CLLocationManagerDelegate {
 
 // MARK: Transmit data collection
 extension SwipeCollect {
-    func transmitLocation(){
+    func freshInstallTransmitLocation(){
         let loc = getLocation()
         let api = Api()
         if let session = UserDefaults.standard.string(forKey: api.sessionID), let publicId = UserDefaults.standard.string(forKey: api.publicID), let lat = loc.0, let lon = loc.1 {
@@ -207,11 +208,12 @@ extension SwipeCollect {
                     // error
                     print("gagal lokasi")
                 }
+                self.saveFreshInstallDataCollects()
             }
         }
     }
     
-    func transmitData(){
+    func freshInstallTransmitData(){
         var valuedData = [[String:String]]()
         if let network = getNetworkType() {
             valuedData.append(buildData(withKey: "network_type", andValue: network))
@@ -239,6 +241,7 @@ extension SwipeCollect {
                     // error
                     print("set data failed")
                 }
+                self.saveFreshInstallDataCollects()
             }
         }
         
@@ -249,6 +252,15 @@ extension SwipeCollect {
                     "value":value]
         return data
     }
+    
+    private func saveFreshInstallDataCollects(){
+        count_freshInstallPost += 1
+        if count_freshInstallPost == 2 {
+            count_freshInstallPost = 0
+            DataStorages.shared.update()
+        }
+    }
+    
 }
 
 

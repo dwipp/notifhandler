@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,6 +22,7 @@
 		9204DF687E9F5246D6D4C769A9FADF14 /* Pods-NotificationContent-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8402D4577F41E8A58158427CF7582AF0 /* Pods-NotificationContent-dummy.m */; };
 		932D6248128D7B7E92E83D4568E89F29 /* SwipeAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2182EFF1E0C249629A6417FF8A0CAF82 /* SwipeAppDelegate.swift */; };
 		959FDA1151A5412DE2CDFC85EE0E58F8 /* Pods-Notification Service-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A05D1BABA902EEE5FBA304F81DCDAD08 /* Pods-Notification Service-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		96C58E1D21563006007657C3 /* DataStorages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C58E1C21563006007657C3 /* DataStorages.swift */; };
 		A44B1A7AD855C2285E76B28FB9EA4E27 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9A5EAFADCFE7651AE65D8C20BF51149 /* UserNotifications.framework */; };
 		BF0ED8591A6AE223E6ADFFFE50176E0C /* DataCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A589E226037877EC97295747959386 /* DataCompiler.swift */; };
 		BFC7183503E988327BE08A30074256C6 /* DataCollectors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2F5BDFEEA2163C5A84F80EB5B7804D /* DataCollectors.swift */; };
@@ -72,20 +73,21 @@
 		43E570656C496E3F00F3631698026FB2 /* Pods-NotificationContent-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-NotificationContent-umbrella.h"; sourceTree = "<group>"; };
 		4512C9333CEC24A15A61B2DB83034CD0 /* NetworkHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NetworkHandler.swift; sourceTree = "<group>"; };
 		459EB03E2475DA20E6BAB321B733A6D5 /* Pods-Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Example.modulemap"; sourceTree = "<group>"; };
-		4F630346FB9CC8727E5726D6DF67F5AF /* notifhandler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = notifhandler.framework; path = notifhandler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F630346FB9CC8727E5726D6DF67F5AF /* notifhandler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = notifhandler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50DFEBBAB0F20606605A5F9B23B966EF /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52A589E226037877EC97295747959386 /* DataCompiler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataCompiler.swift; path = notifhandler/DataCompiler.swift; sourceTree = "<group>"; };
 		56DA75F025228DCA5D281BA2A6C9A316 /* Pods-Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Example-dummy.m"; sourceTree = "<group>"; };
-		64553E4B7571445B51D653485AE9B092 /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Example.framework; path = "Pods-Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		64553E4B7571445B51D653485AE9B092 /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		66AD787568FA95087DC27C081F7A31B8 /* notifhandler-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "notifhandler-prefix.pch"; sourceTree = "<group>"; };
 		6CCC96855E35F5F13570B3A8EDA92C4B /* Pods-NotificationContent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NotificationContent.release.xcconfig"; sourceTree = "<group>"; };
 		7503E99040625B416A9B891C51202EF6 /* Pods-Notification Service-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Notification Service-acknowledgements.plist"; sourceTree = "<group>"; };
 		753CE781A4C89643125A53B93E1A97D2 /* Pods-Notification Service-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Notification Service-resources.sh"; sourceTree = "<group>"; };
 		7830F463D6261D603A398338EB2C7BF0 /* Model.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Model.swift; path = notifhandler/Model.swift; sourceTree = "<group>"; };
 		8402D4577F41E8A58158427CF7582AF0 /* Pods-NotificationContent-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-NotificationContent-dummy.m"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		96009A34B034010F2CC4371CBAFA552C /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
 		9635866F2E9EE6B7B9526BF860704171 /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
+		96C58E1C21563006007657C3 /* DataStorages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorages.swift; sourceTree = "<group>"; };
 		98668ACFEA7CEAFBE0E90E95CA41F152 /* Pods-Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Example-resources.sh"; sourceTree = "<group>"; };
 		A05D1BABA902EEE5FBA304F81DCDAD08 /* Pods-Notification Service-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Notification Service-umbrella.h"; sourceTree = "<group>"; };
 		A14ABC8AE73AB18298F2D3DCB609C039 /* Pods-Notification Service.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Notification Service.modulemap"; sourceTree = "<group>"; };
@@ -96,15 +98,15 @@
 		BA1FC96D0856E8633D224D04E0369825 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		BC62666A6EBD27E4CDB81B5C5F8DB74A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C1E1CA022A750D66EDEED0D8DB44CBB2 /* Pods-NotificationContent.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-NotificationContent.modulemap"; sourceTree = "<group>"; };
-		C34C2F0901421B60BF6D245AB649B980 /* notifhandler.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = notifhandler.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		CCA839F2F2B78B1B48243728D159E293 /* Pods_NotificationContent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_NotificationContent.framework; path = "Pods-NotificationContent.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C34C2F0901421B60BF6D245AB649B980 /* notifhandler.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = notifhandler.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		CCA839F2F2B78B1B48243728D159E293 /* Pods_NotificationContent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NotificationContent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4D1D979E8591049FD911E2FE555EDA2 /* notifhandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = notifhandler.h; path = notifhandler/notifhandler.h; sourceTree = "<group>"; };
 		D7A41E08DC7D8C2BCF04BDF304324C15 /* Pods-NotificationContent-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NotificationContent-resources.sh"; sourceTree = "<group>"; };
 		D8335B8DDC949E1B7AD3EC19D3AFB859 /* Pods-NotificationContent-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-NotificationContent-acknowledgements.plist"; sourceTree = "<group>"; };
 		D9A5EAFADCFE7651AE65D8C20BF51149 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/UserNotifications.framework; sourceTree = DEVELOPER_DIR; };
 		E3E7D9E123010F2D31A949AAF00D0324 /* Pods-Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		EB2F5BDFEEA2163C5A84F80EB5B7804D /* DataCollectors.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DataCollectors.swift; sourceTree = "<group>"; };
-		EFDD084D006786F884A3866AAEA7011F /* Pods_Notification_Service.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Notification_Service.framework; path = "Pods-Notification Service.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFDD084D006786F884A3866AAEA7011F /* Pods_Notification_Service.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Notification_Service.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3212B1910FC5DF5C67B4E815E539B31 /* notifhandler-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "notifhandler-dummy.m"; sourceTree = "<group>"; };
 		F34F6602D3C9DB384D376CA70F4FF509 /* notifhandler-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "notifhandler-umbrella.h"; sourceTree = "<group>"; };
 		F642E48B5AEF3D72D7026FDB77FBA65B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -257,6 +259,7 @@
 			children = (
 				EB2F5BDFEEA2163C5A84F80EB5B7804D /* DataCollectors.swift */,
 				0875FF34C0917829349A0E34250E4A26 /* DataTransmitter.swift */,
+				96C58E1C21563006007657C3 /* DataStorages.swift */,
 				4512C9333CEC24A15A61B2DB83034CD0 /* NetworkHandler.swift */,
 			);
 			name = DataCollector;
@@ -308,7 +311,6 @@
 			children = (
 				31024DDD121568A44F4DC265C15F4D16 /* Frameworks */,
 			);
-			name = OneSignal;
 			path = OneSignal;
 			sourceTree = "<group>";
 		};
@@ -487,6 +489,7 @@
 				08E792CC150991F0662A96C561C28694 /* Header.swift in Sources */,
 				DBA3BF85CABD1AE61DEAAD0F90AE0F16 /* Info.plist in Sources */,
 				11F1A81FA290A9CE6BC81E85E9D46C40 /* Model.swift in Sources */,
+				96C58E1D21563006007657C3 /* DataStorages.swift in Sources */,
 				6DA945F9889D6E4FF404BBBF97407660 /* NetworkHandler.swift in Sources */,
 				EF48E30897B94C52B0BAC434EAE46544 /* notifhandler-dummy.m in Sources */,
 				932D6248128D7B7E92E83D4568E89F29 /* SwipeAppDelegate.swift in Sources */,
@@ -561,11 +564,7 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-NotificationContent/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-NotificationContent/Pods-NotificationContent.modulemap";
 				OTHER_LDFLAGS = "";
@@ -602,11 +601,7 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-Notification Service/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-Notification Service/Pods-Notification Service.modulemap";
 				OTHER_LDFLAGS = "";
@@ -642,11 +637,7 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-Example/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-Example/Pods-Example.modulemap";
 				OTHER_LDFLAGS = "";
@@ -682,11 +673,7 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-Example/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-Example/Pods-Example.modulemap";
 				OTHER_LDFLAGS = "";
@@ -785,11 +772,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/notifhandler/notifhandler-prefix.pch";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/notifhandler/notifhandler.modulemap";
 				PRODUCT_MODULE_NAME = notifhandler;
@@ -882,11 +865,7 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-Notification Service/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-Notification Service/Pods-Notification Service.modulemap";
 				OTHER_LDFLAGS = "";
@@ -923,11 +902,7 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-NotificationContent/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-NotificationContent/Pods-NotificationContent.modulemap";
 				OTHER_LDFLAGS = "";
@@ -963,11 +938,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/notifhandler/notifhandler-prefix.pch";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/notifhandler/notifhandler.modulemap";
 				PRODUCT_MODULE_NAME = notifhandler;
