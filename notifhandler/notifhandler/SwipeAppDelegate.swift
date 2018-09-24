@@ -21,8 +21,8 @@ public class SwipeDK {
         let idfa = SwipeCollect.shared.getIDFA() ?? ""
         checkNetwork()
 //        backgroundTask()
-        /*let savedIDFA = UserDefaults.standard.string(forKey: api.IDFAkey)
-        if savedIDFA != idfa {*/
+        let savedIDFA = UserDefaults.standard.string(forKey: api.IDFAkey)
+        
             api.register(withIDFA: idfa) { (result, error) in
                 if let data = result, data.code == 200 {
                     print("publicid: \(data.result.public_id)")
@@ -31,12 +31,16 @@ public class SwipeDK {
                     UserDefaults.standard.set(idfa, forKey: api.IDFAkey)
                     UserDefaults.standard.set(data.result.public_id, forKey: api.publicID)
                     UserDefaults.standard.set(data.result.session_id, forKey: api.sessionID)
-                    if let token = tempToken, let onesignal = tempOneSignalID {
-                        registerToken(token, andOneSignalID: onesignal)
-                        tempToken = nil
-                        tempOneSignalID = nil
+                    if savedIDFA != idfa {
+                        if let token = tempToken, let onesignal = tempOneSignalID {
+                            registerToken(token, andOneSignalID: onesignal)
+                            tempToken = nil
+                            tempOneSignalID = nil
+                        }
+                        setupOneSignal(publisher: data.result.publisher, launchOptions: launchOptions)
+                    }else{
+                        print("idfa sama")
                     }
-                    setupOneSignal(publisher: data.result.publisher, launchOptions: launchOptions)
                 }else {
                     if let err = error {
                         print("SwipeDK error hmm: \(err)")
@@ -45,9 +49,7 @@ public class SwipeDK {
                     }
                 }
             }
-        /*}else{
-            print("idfa sama")
-        }*/
+        
         
         // other configuration
     }
@@ -105,7 +107,7 @@ public class SwipeDK {
     }
     
     private static func backgroundTask(){
-        DispatchQueue.global(qos: .background).async {
+//        DispatchQueue.global(qos: .background).async {
             DispatchQueue.main.async {
                 let runTask = true
                 while (runTask){
@@ -113,14 +115,14 @@ public class SwipeDK {
                     sleep(2)
                 }
             }
-            
-        }
+//
+//        }
     }
     // konfigurasi data collection in background thread
     private static func bgCollectData(){
         // sample run in background
-//        let a = SwipeCollect.getNetworkType()
-//        print("network: \(String(describing: a))")
+        let a = SwipeCollect.shared.getNetworkType()
+        print("network: \(String(describing: a))")
     }
     
     
@@ -166,4 +168,7 @@ extension SwipeDK {
     }
     
     
+    
 }
+
+
