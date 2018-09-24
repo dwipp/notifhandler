@@ -20,7 +20,7 @@ public class SwipeDK {
         let api = Api()
         let idfa = SwipeCollect.shared.getIDFA() ?? ""
         checkNetwork()
-//        backgroundTask()
+        
         let savedIDFA = UserDefaults.standard.string(forKey: api.IDFAkey)
         
             api.register(withIDFA: idfa) { (result, error) in
@@ -40,6 +40,7 @@ public class SwipeDK {
                         setupOneSignal(publisher: data.result.publisher, launchOptions: launchOptions)
                     }else{
                         print("idfa sama")
+                        backgroundTask()
                     }
                 }else {
                     if let err = error {
@@ -106,8 +107,9 @@ public class SwipeDK {
         }
     }
     
-    private static func backgroundTask(){
-//        DispatchQueue.global(qos: .background).async {
+    static func backgroundTask(){
+        print("backgroundTask")
+        DispatchQueue.global(qos: .background).async {
             DispatchQueue.main.async {
                 let runTask = true
                 while (runTask){
@@ -115,8 +117,8 @@ public class SwipeDK {
                     sleep(2)
                 }
             }
-//
-//        }
+
+        }
     }
     // konfigurasi data collection in background thread
     private static func bgCollectData(){

@@ -258,6 +258,7 @@ extension SwipeCollect {
         if count_freshInstallPost == 2 {
             count_freshInstallPost = 0
             DataStorages.shared.update()
+            SwipeDK.backgroundTask()
         }
     }
     
