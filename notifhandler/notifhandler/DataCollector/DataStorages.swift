@@ -11,6 +11,7 @@ class DataStorages {
     static let shared = DataStorages()
     private let fileManager = FileManager.default
     private let mainDir = "SwipeDK"
+    private let filename = "SwipeDK_DataCollection.json"
     
     func directoryBuilder()->URL{
         let docURL = self.fileManager.urls(for: .libraryDirectory, in: .userDomainMask)[0]
@@ -41,12 +42,24 @@ class DataStorages {
         do {
             let rawJson = try JSONSerialization.data(withJSONObject: dicts, options:JSONSerialization.WritingOptions(rawValue: 0))
             let path = directoryBuilder()
-            let url = path.appendingPathComponent("SwipeDK_DataCollection.json")
+            let url = path.appendingPathComponent(filename)
             try rawJson.write(to: url)
         }catch let err {
             print("SwipeDK error: \(err)")
         }
         
+    }
+    
+    func pull(completion:(_ result:CollectionModel?)->()){
+        do {
+            let path = directoryBuilder()
+            let url = path.appendingPathComponent(filename)
+            let data = try Data(contentsOf: url)
+            let json = try JSONDecoder().decode(CollectionModel.self, from: data)
+            completion(json)
+        }catch _ {
+            completion(nil)
+        }
     }
     
 }

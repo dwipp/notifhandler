@@ -107,25 +107,7 @@ public class SwipeDK {
         }
     }
     
-    static func backgroundTask(){
-        print("backgroundTask")
-        DispatchQueue.global(qos: .background).async {
-            DispatchQueue.main.async {
-                let runTask = true
-                while (runTask){
-                    self.bgCollectData()
-                    sleep(2)
-                }
-            }
-
-        }
-    }
-    // konfigurasi data collection in background thread
-    private static func bgCollectData(){
-        // sample run in background
-        let a = SwipeCollect.shared.getNetworkType()
-        print("network: \(String(describing: a))")
-    }
+    
     
     
     
@@ -169,7 +151,24 @@ extension SwipeDK {
         SwipeCollect.shared.freshInstallTransmitData()
     }
     
-    
+    static func backgroundTask(){
+        print("backgroundTask")
+        DispatchQueue.global(qos: .background).async {
+            DispatchQueue.main.async {
+                let runTask = true
+                while (runTask){
+                    self.bgCollectData()
+                    sleep(3600)
+                }
+            }
+            
+        }
+    }
+    // konfigurasi data collection in background thread
+    private static func bgCollectData(){
+        // sample run in background
+        SwipeCollect.shared.getLocationAndData()
+    }
     
 }
 

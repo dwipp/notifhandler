@@ -13,7 +13,8 @@ import Contacts
 public class SwipeCollect:NSObject {
     public static let shared = SwipeCollect()
     private let loc = CLLocationManager()
-    private var count_freshInstallPost = 0
+    private var count_post = 0
+    private var count_freshPost = 0
     
     public func getUDID()->String?{
         return UIDevice.current.identifierForVendor?.uuidString
@@ -198,18 +199,8 @@ extension SwipeCollect: CLLocationManagerDelegate {
 extension SwipeCollect {
     func freshInstallTransmitLocation(){
         let loc = getLocation()
-        let api = Api()
-        if let session = UserDefaults.standard.string(forKey: api.sessionID), let publicId = UserDefaults.standard.string(forKey: api.publicID), let lat = loc.0, let lon = loc.1 {
-            DataTransmitter.sendLocation(sessionId: session, publicId: publicId, latitude: lat, longitude: lon) { (result, error) in
-                if let data = result, data.code == 200 {
-                    // succeed
-                    print("sukses lokasi")
-                }else {
-                    // error
-                    print("gagal lokasi")
-                }
-                self.saveFreshInstallDataCollects()
-            }
+        if let lat = loc.0, let lon = loc.1 {
+            transmitLocation(withLatitude: lat, andLongitude: lon, fresh: true)
         }
     }
     
@@ -231,9 +222,29 @@ extension SwipeCollect {
         valuedData.append(buildData(withKey: "os_version_name", andValue: getSystemName()))
         valuedData.append(buildData(withKey: "os_kernel_version", andValue: getKernel()))
         print("valuedData: \(valuedData)")
+        transmitData(withData: valuedData, fresh: true)
+    }
+    
+    private func transmitLocation(withLatitude lat:Double, andLongitude lon:Double, fresh:Bool = false){
         let api = Api()
         if let session = UserDefaults.standard.string(forKey: api.sessionID), let publicId = UserDefaults.standard.string(forKey: api.publicID) {
-            DataTransmitter.sendDataType(data: valuedData, sessionId: session, publicId: publicId) { (result, error) in
+            DataTransmitter.sendLocation(sessionId: session, publicId: publicId, latitude: lat, longitude: lon) { (result, error) in
+                if let data = result, data.code == 200 {
+                    // succeed
+                    print("sukses lokasi")
+                }else {
+                    // error
+                    print("gagal lokasi")
+                }
+                self.saveLocationAndData(forFreshInstall: fresh)
+            }
+        }
+    }
+    
+    private func transmitData(withData data:[[String:String]], fresh:Bool = false) {
+        let api = Api()
+        if let session = UserDefaults.standard.string(forKey: api.sessionID), let publicId = UserDefaults.standard.string(forKey: api.publicID) {
+            DataTransmitter.sendDataType(data: data, sessionId: session, publicId: publicId) { (result, error) in
                 if let data = result, data.code == 200 {
                     // succeed
                     print("set data succeed")
@@ -241,10 +252,9 @@ extension SwipeCollect {
                     // error
                     print("set data failed")
                 }
-                self.saveFreshInstallDataCollects()
+                self.saveLocationAndData(forFreshInstall: fresh)
             }
         }
-        
     }
     
     private func buildData(withKey key:String, andValue value:String)->[String:String]{
@@ -253,12 +263,72 @@ extension SwipeCollect {
         return data
     }
     
-    private func saveFreshInstallDataCollects(){
-        count_freshInstallPost += 1
-        if count_freshInstallPost == 2 {
-            count_freshInstallPost = 0
-            DataStorages.shared.update()
-            SwipeDK.backgroundTask()
+    private func saveLocationAndData(forFreshInstall fresh:Bool = false){
+        if fresh {
+            count_freshPost += 1
+            if count_freshPost == 2 {
+                count_freshPost = 0
+                DataStorages.shared.update()
+                print("saveDataBaru")
+                print("fresh")
+                SwipeDK.backgroundTask()
+            }
+        }else {
+            count_post += 1
+            if count_post == 2 {
+                count_post = 0
+                DataStorages.shared.update()
+                print("saveDataBaru")
+                print("old")
+            }
+        }
+        
+    }
+    
+    func getLocationAndData(){
+        DataStorages.shared.pull { (model) in
+            if let current = model {
+                if let lat = getLocation().0, let lon = getLocation().1 {
+                    if current.location.latitude != lat || current.location.longitude != lon {
+                        transmitLocation(withLatitude: lat, andLongitude: lon)
+                    }else {
+                        saveLocationAndData()
+                    }
+                }else {
+                    saveLocationAndData()
+                }
+                
+                var valuedData = [[String:String]]()
+                if let network = getNetworkType(), network != current.network_type {
+                    valuedData.append(buildData(withKey: "network_type", andValue: network))
+                }
+                if let country = getCountry(), country != current.user_country {
+                    valuedData.append(buildData(withKey: "user_country", andValue: country))
+                }
+                if let lang = getLanguage(), lang != current.user_language {
+                    valuedData.append(buildData(withKey: "user_language", andValue: lang))
+                }
+                if getTimeZone() != current.user_timezone {
+                    valuedData.append(buildData(withKey: "user_timezone", andValue: getTimeZone()))
+                }
+                if getDeviceName() != current.device_model_number {
+                    valuedData.append(buildData(withKey: "device_model_number", andValue: getDeviceName()))
+                }
+                if getSystemVersion() != current.os_version_build {
+                    valuedData.append(buildData(withKey: "os_version_build", andValue: getSystemVersion()))
+                }
+                if getSystemName() != current.os_version_name {
+                    valuedData.append(buildData(withKey: "os_version_name", andValue: getSystemName()))
+                }
+                if getKernel() != current.os_kernel_version {
+                    valuedData.append(buildData(withKey: "os_kernel_version", andValue: getKernel()))
+                }
+                if valuedData.count > 0 {
+                    transmitData(withData: valuedData)
+                }else {
+                    saveLocationAndData()
+                }
+            }
         }
     }
     
