@@ -70,5 +70,14 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         SwipeDK.userNotificationCenter(center, didReceive: response)
         completionHandler()
     }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        print("didReceiveRemoteNotification: \(userInfo)")
+        
+        SwipeDK.application(application, didReceiveRemoteNotification: userInfo) { (result) in
+            completionHandler(result)
+        }
+        
+    }
 }
 

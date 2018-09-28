@@ -57,7 +57,8 @@ class DataStorages {
             let data = try Data(contentsOf: url)
             let json = try JSONDecoder().decode(CollectionModel.self, from: data)
             completion(json)
-        }catch _ {
+        }catch let err {
+            print("error: \(err)")
             completion(nil)
         }
     }

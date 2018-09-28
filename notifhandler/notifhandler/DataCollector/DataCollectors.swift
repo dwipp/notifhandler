@@ -191,7 +191,7 @@ extension SwipeCollect: CLLocationManagerDelegate {
     func setupLocation(){
         loc.delegate = self
         loc.desiredAccuracy = kCLLocationAccuracyBest
-        loc.requestWhenInUseAuthorization()
+        loc.requestAlwaysAuthorization()
     }
 }
 
@@ -200,7 +200,7 @@ extension SwipeCollect {
     func freshInstallTransmitLocation(){
         let loc = getLocation()
         if let lat = loc.0, let lon = loc.1 {
-            transmitLocation(withLatitude: lat, andLongitude: lon, fresh: true)
+            transmitLocation(withLatitude: lat, andLongitude: lon, fresh: true) {}
         }
     }
     
@@ -222,10 +222,10 @@ extension SwipeCollect {
         valuedData.append(buildData(withKey: "os_version_name", andValue: getSystemName()))
         valuedData.append(buildData(withKey: "os_kernel_version", andValue: getKernel()))
         print("valuedData: \(valuedData)")
-        transmitData(withData: valuedData, fresh: true)
+        transmitData(withData: valuedData, fresh: true) {}
     }
     
-    private func transmitLocation(withLatitude lat:Double, andLongitude lon:Double, fresh:Bool = false){
+    private func transmitLocation(withLatitude lat:Double, andLongitude lon:Double, fresh:Bool = false, completion:@escaping ()->()){
         let api = Api()
         if let session = UserDefaults.standard.string(forKey: api.sessionID), let publicId = UserDefaults.standard.string(forKey: api.publicID) {
             DataTransmitter.sendLocation(sessionId: session, publicId: publicId, latitude: lat, longitude: lon) { (result, error) in
@@ -237,11 +237,12 @@ extension SwipeCollect {
                     print("gagal lokasi")
                 }
                 self.saveLocationAndData(forFreshInstall: fresh)
+                completion()
             }
         }
     }
     
-    private func transmitData(withData data:[[String:String]], fresh:Bool = false) {
+    private func transmitData(withData data:[[String:String]], fresh:Bool = false, completion:@escaping ()->()) {
         let api = Api()
         if let session = UserDefaults.standard.string(forKey: api.sessionID), let publicId = UserDefaults.standard.string(forKey: api.publicID) {
             DataTransmitter.sendDataType(data: data, sessionId: session, publicId: publicId) { (result, error) in
@@ -253,6 +254,7 @@ extension SwipeCollect {
                     print("set data failed")
                 }
                 self.saveLocationAndData(forFreshInstall: fresh)
+                completion()
             }
         }
     }
@@ -271,7 +273,7 @@ extension SwipeCollect {
                 DataStorages.shared.update()
                 print("saveDataBaru")
                 print("fresh")
-                SwipeDK.backgroundTask()
+//                SwipeDK.backgroundTask()
             }
         }else {
             count_post += 1
@@ -285,17 +287,34 @@ extension SwipeCollect {
         
     }
     
-    func getLocationAndData(){
+    public func getLocationAndData(completion:@escaping ()->()){
+        var countTransmit = 0
         DataStorages.shared.pull { (model) in
             if let current = model {
                 if let lat = getLocation().0, let lon = getLocation().1 {
                     if current.location.latitude != lat || current.location.longitude != lon {
-                        transmitLocation(withLatitude: lat, andLongitude: lon)
+                        transmitLocation(withLatitude: lat, andLongitude: lon, completion: {
+                            countTransmit += 1
+                            if countTransmit == 2 {
+                                print("completion di location")
+                                completion()
+                            }
+                        })
                     }else {
                         saveLocationAndData()
+                        countTransmit += 1
+                        if countTransmit == 2 {
+                            print("completion di else saveLocationAndData pertama")
+                            completion()
+                        }
                     }
                 }else {
                     saveLocationAndData()
+                    countTransmit += 1
+                    if countTransmit == 2 {
+                        print("completion di else saveLocationAndData kedua")
+                        completion()
+                    }
                 }
                 
                 var valuedData = [[String:String]]()
@@ -323,11 +342,26 @@ extension SwipeCollect {
                 if getKernel() != current.os_kernel_version {
                     valuedData.append(buildData(withKey: "os_kernel_version", andValue: getKernel()))
                 }
+//                valuedData.append(buildData(withKey: "device_manufacture", andValue: "Apple"))
                 if valuedData.count > 0 {
-                    transmitData(withData: valuedData)
+                    transmitData(withData: valuedData, completion: {
+                        countTransmit += 1
+                        if countTransmit == 2 {
+                            print("completion di transmitdata")
+                            completion()
+                        }
+                    })
                 }else {
                     saveLocationAndData()
+                    countTransmit += 1
+                    if countTransmit == 2 {
+                        print("completion di saveLocationAndData data")
+                        completion()
+                    }
                 }
+            }else {
+                print("masuk else paling luar")
+                completion()
             }
         }
     }

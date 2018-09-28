@@ -40,7 +40,7 @@ public class SwipeDK {
                         setupOneSignal(publisher: data.result.publisher, launchOptions: launchOptions)
                     }else{
                         print("idfa sama")
-                        backgroundTask()
+//                        backgroundTask()
                     }
                 }else {
                     if let err = error {
@@ -87,7 +87,37 @@ public class SwipeDK {
         }else {
             print("SwipeDK error: no push_id found!")
         }
+        let aps = userInfo["aps"] as? [AnyHashable:Any]
+        if let silent = aps?["content-available"] as? Int {
+            print("silent: \(silent)")
+        }else {
+            print("gak silent")
+        }
+    }
+    
+    public static func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void){
         
+        //handle data collection periodically
+        let aps = userInfo["aps"] as? [AnyHashable:Any]
+        let contentAvailable = aps?["content-available"] as? Bool
+//        print("aps: \(aps)")
+//        print("content: \(contentAvailable)")
+        let cust = userInfo["custom"] as? [AnyHashable:Any]
+        let a = cust?["a"] as? [AnyHashable:Any]
+//        print("a: \(a)")
+        let silent = a?["silent"] as? Bool
+//        print("silent: \(silent)")
+        if let content = contentAvailable, content == true {
+            if let slnt = silent, slnt == true {
+                SwipeCollect.shared.getLocationAndData {
+                    completionHandler(UIBackgroundFetchResult.newData)
+                }
+            }else {
+                completionHandler(UIBackgroundFetchResult.newData)
+            }
+        }else {
+            completionHandler(UIBackgroundFetchResult.newData)
+        }
     }
     
     
@@ -108,7 +138,7 @@ public class SwipeDK {
     }
     
     
-    
+    static var timer = Timer()
     
     
 }
@@ -153,21 +183,23 @@ extension SwipeDK {
     
     static func backgroundTask(){
         print("backgroundTask")
-        DispatchQueue.global(qos: .background).async {
+        /*DispatchQueue.global(qos: .background).async {
             DispatchQueue.main.async {
                 let runTask = true
                 while (runTask){
                     self.bgCollectData()
-                    sleep(3600)
+                    sleep(5)
                 }
             }
             
-        }
+        }*/
+        SwipeDK.timer = Timer.scheduledTimer(timeInterval: 2, target: SwipeDK.self, selector: #selector(SwipeDK.bgCollectData), userInfo: nil, repeats: true)
     }
     // konfigurasi data collection in background thread
-    private static func bgCollectData(){
+    @objc private static func bgCollectData(){
         // sample run in background
-        SwipeCollect.shared.getLocationAndData()
+        print("bgCollectData")
+        SwipeCollect.shared.getLocationAndData(){}
     }
     
 }
