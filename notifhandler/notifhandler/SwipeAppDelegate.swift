@@ -100,12 +100,15 @@ public class SwipeDK {
         //handle data collection periodically
         let aps = userInfo["aps"] as? [AnyHashable:Any]
         let contentAvailable = aps?["content-available"] as? Bool
-//        print("aps: \(aps)")
-//        print("content: \(contentAvailable)")
+        
+        //onesignal
         let cust = userInfo["custom"] as? [AnyHashable:Any]
         let a = cust?["a"] as? [AnyHashable:Any]
-//        print("a: \(a)")
         let silent = a?["silent"] as? Bool
+        
+        //pusher
+        /*let data  = userInfo["data"] as? [AnyHashable:Any]
+        let silent = data?["silent"] as? Bool*/
 //        print("silent: \(silent)")
         if let content = contentAvailable, content == true {
             if let slnt = silent, slnt == true {
