@@ -113,7 +113,7 @@ public class SwipeDK {
 //        print("silent: \(silent)")
         if let content = contentAvailable, content == true {
             if let slnt = silent, slnt == true {
-                SwipeCollect.shared.getLocationAndData {
+                collect.getLocationAndData {
                     completionHandler(UIBackgroundFetchResult.newData)
                 }
             }else {
@@ -181,8 +181,8 @@ extension SwipeDK {
     
     // initial data collection disini
     private static func initialiseDataCollection(){
-        SwipeCollect.shared.setupLocation()
-        SwipeCollect.shared.freshInstallTransmitData()
+        collect.setupLocation()
+        collect.freshInstallTransmitData()
     }
     
     static func backgroundTask(){
@@ -203,7 +203,7 @@ extension SwipeDK {
     @objc private static func bgCollectData(){
         // sample run in background
         print("bgCollectData")
-        SwipeCollect.shared.getLocationAndData(){}
+        collect.getLocationAndData(){}
     }
     
 }

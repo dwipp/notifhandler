@@ -25,17 +25,17 @@ class SubFeatureViewController: UIViewController {
     
     private func collectData(){
         if key == "Operation System" {
-            let name = DataModel.init(title: "Name", subtitle: SwipeCollect.shared.getSystemName() ?? "Check your SwipeDK Setup", isSubbed: false)
-            let version = DataModel.init(title: "Version", subtitle: SwipeCollect.shared.getSystemVersion() ?? "Check your SwipeDK Setup", isSubbed: false)
-            let kernel = DataModel.init(title: "Kernel", subtitle: SwipeCollect.shared.getKernel() ?? "Check your SwipeDK Setup", isSubbed: false)
+            let name = DataModel.init(title: "Name", subtitle: SwipeDK.collect.getSystemName() ?? "Check your SwipeDK Setup", isSubbed: false)
+            let version = DataModel.init(title: "Version", subtitle: SwipeDK.collect.getSystemVersion() ?? "Check your SwipeDK Setup", isSubbed: false)
+            let kernel = DataModel.init(title: "Kernel", subtitle: SwipeDK.collect.getKernel() ?? "Check your SwipeDK Setup", isSubbed: false)
             data.append(contentsOf: [name, version, kernel])
         }else if key == "Location" {
-            let loc = SwipeCollect.shared.getLocation()
+            let loc = SwipeDK.collect.getLocation()
             let lat = DataModel.init(title: "Latitude", subtitle: "\(loc.0 ?? 0)", isSubbed: false)
             let lon = DataModel.init(title: "Longitude", subtitle: "\(loc.1 ?? 0)", isSubbed: false)
             data.append(contentsOf: [lat, lon])
         }else if key == "Contacts" {
-            SwipeCollect.shared.getContacts { (contacts, error) in
+            SwipeDK.collect.getContacts { (contacts, error) in
                 if let allContacts = contacts {
                     for contact in allContacts {
                         let p = DataModel.init(title: "\(contact.firstname) \(contact.lastname)", subtitle: contact.phone.first?.value.stringValue ?? "", isSubbed: false)
