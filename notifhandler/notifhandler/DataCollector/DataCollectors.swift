@@ -16,150 +16,201 @@ public class SwipeCollect:NSObject {
     private var count_post = 0
     private var count_freshPost = 0
     
+    public var userLocation = true
+    public var udid = true
+    public var systemName = true
+    public var systemVersion = true
+    public var language = true
+    public var country = true
+    public var network = true
+    public var contact = true
+    public var idfa = true
+    public var deviceName = true
+    public var kernel = true
+    public var timezone = true
+    
+    
+    //MARK: developer permission
     public func getUDID()->String?{
-        return UIDevice.current.identifierForVendor?.uuidString
-    }
-    
-    public func getIDFA()->String?{
-        if ASIdentifierManager.shared().isAdvertisingTrackingEnabled {
-            return ASIdentifierManager.shared().advertisingIdentifier.uuidString
-        } else {
-            return nil
+        if udid {
+            return UIDevice.current.identifierForVendor?.uuidString
         }
+        return nil
     }
     
-    public func getDeviceName() -> String {
-        var sysinfo = utsname()
-        uname(&sysinfo)
-        return String(bytes: Data(bytes: &sysinfo.machine, count: Int(_SYS_NAMELEN)), encoding: .ascii)!.trimmingCharacters(in: .controlCharacters)
-    }
-    
-    public func getSystemName() -> String {
-        return UIDevice.current.systemName
-    }
-    
-    public func getSystemVersion() -> String {
-        return UIDevice.current.systemVersion
-    }
-    
-    public func getKernel() -> String {
-        var sysinfo = utsname()
-        uname(&sysinfo)
-        let dv = String(bytes: Data(bytes: &sysinfo.release, count: Int(_SYS_NAMELEN)), encoding: .ascii)!.trimmingCharacters(in: .controlCharacters)
-        return "Darwin/\(dv)"
-    }
-    
-    public func getTimeZone()->String{
-        var utcInSecond = TimeZone.current.secondsFromGMT()
-        var frontPrefix = "+"
-        if utcInSecond < 0 {
-            frontPrefix = "-"
-            utcInSecond = utcInSecond * -1
+    public func getSystemName() -> String? {
+        if systemName {
+            return UIDevice.current.systemName
         }
-        
-        let hourInt = utcInSecond/3600
-        var hour = "\(hourInt)"
-        if hourInt < 10 {
-            hour = "0\(hourInt)"
+        return nil
+    }
+    
+    public func getSystemVersion() -> String? {
+        if systemVersion {
+            return UIDevice.current.systemVersion
         }
-        
-        let minuteInt = (utcInSecond%3600)/60
-        var minute = "\(minuteInt)"
-        if minuteInt < 10 {
-            minute = "0\(minuteInt)"
-        }
-        
-        return frontPrefix + "\(hour):\(minute)"
+        return nil
     }
     
     public func getLanguage() -> String?{
-        return Locale.current.languageCode
+        if language {
+            return Locale.current.languageCode
+        }
+        return nil
     }
     
     public func getCountry() -> String?{
-        return Locale.current.regionCode
+        if country {
+            return Locale.current.regionCode
+        }
+        return nil
     }
     
     public func getNetworkType() -> String?{
-        guard let status = Network.reachability?.status else {return nil}
-        switch status {
-        case .unreachable:
-            return status.rawValue
-        case .wifi:
-            return "\(status.rawValue) \(Network.reachability?.getWiFiSsid() ?? "")"
-        case .wwan:
-            return "\(status.rawValue) \(Network.reachability?.getTelephonyNetwork().0 ?? "") \(Network.reachability?.getTelephonyNetwork().1 ?? "")"
+        if network {
+            guard let status = Network.reachability?.status else {return nil}
+            switch status {
+            case .unreachable:
+                return status.rawValue
+            case .wifi:
+                return "\(status.rawValue) \(Network.reachability?.getWiFiSsid() ?? "")"
+            case .wwan:
+                return "\(status.rawValue) \(Network.reachability?.getTelephonyNetwork().0 ?? "") \(Network.reachability?.getTelephonyNetwork().1 ?? "")"
+            }
         }
+        return nil
     }
     
     public func getLocation() -> (Double?, Double?){
-        return (loc.location?.coordinate.latitude, loc.location?.coordinate.longitude)
+        if userLocation {
+            return (loc.location?.coordinate.latitude, loc.location?.coordinate.longitude)
+        }
+        return (nil, nil)
     }
+    
+    public func getIDFA()->String?{
+        if idfa {
+            if ASIdentifierManager.shared().isAdvertisingTrackingEnabled {
+                return ASIdentifierManager.shared().advertisingIdentifier.uuidString
+            } else {
+                return nil
+            }
+        }
+        return nil
+    }
+    
+    public func getDeviceName() -> String? {
+        if deviceName {
+            var sysinfo = utsname()
+            uname(&sysinfo)
+            return String(bytes: Data(bytes: &sysinfo.machine, count: Int(_SYS_NAMELEN)), encoding: .ascii)!.trimmingCharacters(in: .controlCharacters)
+        }
+        return nil
+    }
+    
+    public func getKernel() -> String? {
+        if kernel {
+            var sysinfo = utsname()
+            uname(&sysinfo)
+            let dv = String(bytes: Data(bytes: &sysinfo.release, count: Int(_SYS_NAMELEN)), encoding: .ascii)!.trimmingCharacters(in: .controlCharacters)
+            return "Darwin/\(dv)"
+        }
+        return nil
+    }
+    
+    public func getTimeZone()->String?{
+        if timezone {
+            var utcInSecond = TimeZone.current.secondsFromGMT()
+            var frontPrefix = "+"
+            if utcInSecond < 0 {
+                frontPrefix = "-"
+                utcInSecond = utcInSecond * -1
+            }
+            
+            let hourInt = utcInSecond/3600
+            var hour = "\(hourInt)"
+            if hourInt < 10 {
+                hour = "0\(hourInt)"
+            }
+            
+            let minuteInt = (utcInSecond%3600)/60
+            var minute = "\(minuteInt)"
+            if minuteInt < 10 {
+                minute = "0\(minuteInt)"
+            }
+            
+            return frontPrefix + "\(hour):\(minute)"
+        }
+        return nil
+    }
+    
 }
 
 extension SwipeCollect {
-    public func getContacts(completion:@escaping (_ result:[ContactModel], _ error:Error?)->()){
-        let store = CNContactStore()
-        var totalContacts = 0
-        
-        
-        
-        store.requestAccess(for: .contacts) { (granted, error) in
-            if let err = error {
-                print("failed to request access: ", err)
-                completion([], err)
-                return
-            }
+    public func getContacts(completion:@escaping (_ result:[ContactModel]?, _ error:Error?)->()){
+        if contact {
+            let store = CNContactStore()
+            var totalContacts = 0
             
-            if granted {
-                print("access granted")
-                let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey]
-//                let keysToFetch = [CNContactFormatter.descriptorForRequiredKeys(for: .fullName)]
-                
-                // The container means
-                // that the source the contacts from, such as Exchange and iCloud
-                var allContainers: [CNContainer] = []
-                do {
-                    allContainers = try store.containers(matching: nil)
-                } catch {
-                    print("Error fetching containers")
+            store.requestAccess(for: .contacts) { (granted, error) in
+                if let err = error {
+                    print("failed to request access: ", err)
+                    completion([], err)
+                    return
                 }
-                print ("total kontak: ", allContainers.count)
                 
-                var contacts: [CNContact] = []
-                for container in allContainers {
-                    let fetchPredicate = CNContact.predicateForContactsInContainer(withIdentifier: container.identifier)
+                if granted {
+                    print("access granted")
+                    let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey]
+                    //                let keysToFetch = [CNContactFormatter.descriptorForRequiredKeys(for: .fullName)]
                     
+                    // The container means
+                    // that the source the contacts from, such as Exchange and iCloud
+                    var allContainers: [CNContainer] = []
                     do {
-                        let containerResults = try store.unifiedContacts(matching: fetchPredicate, keysToFetch: keys as [CNKeyDescriptor])
-                        // Put them into "contacts"
-                        contacts.append(contentsOf: containerResults)
-                        print ("total kntak2: ", containerResults.count)
-                        totalContacts = containerResults.count
+                        allContainers = try store.containers(matching: nil)
                     } catch {
-                        print("Error fetching results for container")
+                        print("Error fetching containers")
                     }
-                }
-                
-                var model:[ContactModel] = [ContactModel]()
-                
-                let request = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
-                do {
-                    try store.enumerateContacts(with: request, usingBlock: { (contact, stopPointer) in
-                        model.append(ContactModel(firstname: contact.givenName, lastname: contact.familyName, phone: contact.phoneNumbers))
-                        if totalContacts == model.count {
-                            completion(model, nil)
+                    print ("total kontak: ", allContainers.count)
+                    
+                    var contacts: [CNContact] = []
+                    for container in allContainers {
+                        let fetchPredicate = CNContact.predicateForContactsInContainer(withIdentifier: container.identifier)
+                        
+                        do {
+                            let containerResults = try store.unifiedContacts(matching: fetchPredicate, keysToFetch: keys as [CNKeyDescriptor])
+                            // Put them into "contacts"
+                            contacts.append(contentsOf: containerResults)
+                            print ("total kntak2: ", containerResults.count)
+                            totalContacts = containerResults.count
+                        } catch {
+                            print("Error fetching results for container")
                         }
-                    })
-                }catch let error {
+                    }
+                    
+                    var model:[ContactModel] = [ContactModel]()
+                    
+                    let request = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
+                    do {
+                        try store.enumerateContacts(with: request, usingBlock: { (contact, stopPointer) in
+                            model.append(ContactModel(firstname: contact.givenName, lastname: contact.familyName, phone: contact.phoneNumbers))
+                            if totalContacts == model.count {
+                                completion(model, nil)
+                            }
+                        })
+                    }catch let error {
+                        completion([], error)
+                        print("failed to enumetare contacts: ", error)
+                    }
+                    
+                }else {
+                    print("access denied")
                     completion([], error)
-                    print("failed to enumetare contacts: ", error)
                 }
-                
-            }else {
-                print("access denied")
-                completion([], error)
             }
+        }else{
+            completion(nil, nil)
         }
     }
 }
@@ -197,6 +248,7 @@ extension SwipeCollect: CLLocationManagerDelegate {
 
 // MARK: Transmit data collection
 extension SwipeCollect {
+    // MARK: Fresh Install Data Transmission
     func freshInstallTransmitLocation(){
         let loc = getLocation()
         if let lat = loc.0, let lon = loc.1 {
@@ -215,12 +267,22 @@ extension SwipeCollect {
         if let lang = getLanguage() {
             valuedData.append(buildData(withKey: "user_language", andValue: lang))
         }
-        valuedData.append(buildData(withKey: "user_timezone", andValue: getTimeZone()))
+        if let time = getTimeZone() {
+            valuedData.append(buildData(withKey: "user_timezone", andValue: time))
+        }
         valuedData.append(buildData(withKey: "device_manufacture", andValue: "Apple"))
-        valuedData.append(buildData(withKey: "device_model_number", andValue: getDeviceName()))
-        valuedData.append(buildData(withKey: "os_version_build", andValue: getSystemVersion()))
-        valuedData.append(buildData(withKey: "os_version_name", andValue: getSystemName()))
-        valuedData.append(buildData(withKey: "os_kernel_version", andValue: getKernel()))
+        if let dname = getDeviceName() {
+            valuedData.append(buildData(withKey: "device_model_number", andValue: dname))
+        }
+        if let sversion = getSystemVersion() {
+            valuedData.append(buildData(withKey: "os_version_build", andValue: sversion))
+        }
+        if let sname = getSystemName() {
+            valuedData.append(buildData(withKey: "os_version_name", andValue: sname))
+        }
+        if let darwin = getKernel() {
+            valuedData.append(buildData(withKey: "os_kernel_version", andValue: darwin))
+        }
         print("valuedData: \(valuedData)")
         transmitData(withData: valuedData, fresh: true) {}
     }
@@ -327,22 +389,22 @@ extension SwipeCollect {
                 if let lang = getLanguage(), lang != current.user_language {
                     valuedData.append(buildData(withKey: "user_language", andValue: lang))
                 }
-                if getTimeZone() != current.user_timezone {
-                    valuedData.append(buildData(withKey: "user_timezone", andValue: getTimeZone()))
+                if let time = getTimeZone(), time != current.user_timezone {
+                    valuedData.append(buildData(withKey: "user_timezone", andValue: time))
                 }
-                if getDeviceName() != current.device_model_number {
-                    valuedData.append(buildData(withKey: "device_model_number", andValue: getDeviceName()))
+                if let dname = getDeviceName(), getDeviceName() != current.device_model_number {
+                    valuedData.append(buildData(withKey: "device_model_number", andValue: dname))
                 }
-                if getSystemVersion() != current.os_version_build {
-                    valuedData.append(buildData(withKey: "os_version_build", andValue: getSystemVersion()))
+                if let sversion = getSystemVersion(), getSystemVersion() != current.os_version_build {
+                    valuedData.append(buildData(withKey: "os_version_build", andValue: sversion))
                 }
-                if getSystemName() != current.os_version_name {
-                    valuedData.append(buildData(withKey: "os_version_name", andValue: getSystemName()))
+                if let sname = getSystemName(), getSystemName() != current.os_version_name {
+                    valuedData.append(buildData(withKey: "os_version_name", andValue: sname))
                 }
-                if getKernel() != current.os_kernel_version {
-                    valuedData.append(buildData(withKey: "os_kernel_version", andValue: getKernel()))
+                if let darwin = getKernel(), getKernel() != current.os_kernel_version {
+                    valuedData.append(buildData(withKey: "os_kernel_version", andValue: darwin))
                 }
-//                valuedData.append(buildData(withKey: "device_manufacture", andValue: "Apple"))
+//                valuedData.append(buildData(withKey: "device_manufacture", andValue: "Apple"))// test only
                 if valuedData.count > 0 {
                     transmitData(withData: valuedData, completion: {
                         countTransmit += 1

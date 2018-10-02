@@ -15,10 +15,11 @@ public class SwipeDK {
     private static var tempToken:String?
     private static var tempOneSignalID:String?
     private static let onesignalAppID = "89d58078-9dc7-49db-9008-37d610a59513"
+    public static let collect = SwipeCollect.shared
     
     public static func configure(didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?){
         let api = Api()
-        let idfa = SwipeCollect.shared.getIDFA() ?? ""
+        let idfa = Header.getIDFA() ?? ""
         checkNetwork()
         
         let savedIDFA = UserDefaults.standard.string(forKey: api.IDFAkey)

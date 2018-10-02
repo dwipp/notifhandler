@@ -25,9 +25,9 @@ class SubFeatureViewController: UIViewController {
     
     private func collectData(){
         if key == "Operation System" {
-            let name = DataModel.init(title: "Name", subtitle: SwipeCollect.shared.getSystemName(), isSubbed: false)
-            let version = DataModel.init(title: "Version", subtitle: SwipeCollect.shared.getSystemVersion(), isSubbed: false)
-            let kernel = DataModel.init(title: "Kernel", subtitle: SwipeCollect.shared.getKernel(), isSubbed: false)
+            let name = DataModel.init(title: "Name", subtitle: SwipeCollect.shared.getSystemName() ?? "Check your SwipeDK Setup", isSubbed: false)
+            let version = DataModel.init(title: "Version", subtitle: SwipeCollect.shared.getSystemVersion() ?? "Check your SwipeDK Setup", isSubbed: false)
+            let kernel = DataModel.init(title: "Kernel", subtitle: SwipeCollect.shared.getKernel() ?? "Check your SwipeDK Setup", isSubbed: false)
             data.append(contentsOf: [name, version, kernel])
         }else if key == "Location" {
             let loc = SwipeCollect.shared.getLocation()
@@ -36,9 +36,14 @@ class SubFeatureViewController: UIViewController {
             data.append(contentsOf: [lat, lon])
         }else if key == "Contacts" {
             SwipeCollect.shared.getContacts { (contacts, error) in
-                for contact in contacts {
-                    let p = DataModel.init(title: "\(contact.firstname) \(contact.lastname)", subtitle: contact.phone.first?.value.stringValue ?? "", isSubbed: false)
-                    self.data.append(p)
+                if let allContacts = contacts {
+                    for contact in allContacts {
+                        let p = DataModel.init(title: "\(contact.firstname) \(contact.lastname)", subtitle: contact.phone.first?.value.stringValue ?? "", isSubbed: false)
+                        self.data.append(p)
+                    }
+                }else {
+                    let empty = DataModel.init(title: "Check your SwipeDK Setup", subtitle: "", isSubbed: false)
+                    self.data.append(empty)
                 }
                 DispatchQueue.main.async {
                     self.tableView.reloadData()

@@ -29,14 +29,15 @@ class FeatureViewController: UIViewController {
     
     private func collectData(){
         data.removeAll()
-        let udid = DataModel.init(title: "UDID", subtitle: SwipeCollect.shared.getUDID() ?? "Not found", isSubbed: false)
+        let udid = DataModel.init(title: "UDID", subtitle: SwipeCollect.shared.getUDID() ?? "Check your SwipeDK Setup", isSubbed: false)
         let idfa = DataModel.init(title: "IDFA", subtitle: SwipeCollect.shared.getIDFA() ?? "Check your setting", isSubbed: false)
-        let type = DataModel.init(title: "Type", subtitle: SwipeCollect.shared.getDeviceName(), isSubbed: false)
+        let type = DataModel.init(title: "Type", subtitle: SwipeCollect.shared.getDeviceName() ?? "Check your SwipeDK Setup", isSubbed: false)
         let os = DataModel.init(title: "Operation System", subtitle: subbed, isSubbed: true)
-        let timezone = DataModel.init(title: "Timezone", subtitle: "UTC " + SwipeCollect.shared.getTimeZone(), isSubbed: false)
-        let lang = DataModel.init(title: "Language", subtitle: SwipeCollect.shared.getLanguage() ?? "Not found", isSubbed: false)
-        let country = DataModel.init(title: "Country", subtitle: SwipeCollect.shared.getCountry() ?? "Not found", isSubbed: false)
-        let network = DataModel.init(title: "Network Type", subtitle: SwipeCollect.shared.getNetworkType() ?? "Unreachable", isSubbed: false)
+        
+        let timezone = DataModel.init(title: "Timezone", subtitle: "UTC " + (SwipeCollect.shared.getTimeZone() ?? "Check your SwipeDK Setup"), isSubbed: false)
+        let lang = DataModel.init(title: "Language", subtitle: SwipeCollect.shared.getLanguage() ?? "Check your SwipeDK Setup", isSubbed: false)
+        let country = DataModel.init(title: "Country", subtitle: SwipeCollect.shared.getCountry() ?? "Check your SwipeDK Setup", isSubbed: false)
+        let network = DataModel.init(title: "Network Type", subtitle: SwipeCollect.shared.getNetworkType() ?? "Unreachable or Check your SwipeDK Setup", isSubbed: false)
         let location = DataModel.init(title: "Location", subtitle: subbed, isSubbed: true)
         let contact = DataModel.init(title: "Contacts", subtitle: subbed, isSubbed: true)
         data.append(contentsOf: [udid, idfa, type, os, timezone, lang, country, network, location, contact])

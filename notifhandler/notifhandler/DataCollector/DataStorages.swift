@@ -27,18 +27,18 @@ class DataStorages {
     
     func update(){
         let sc = SwipeCollect.shared
-        let location = ["latitude":sc.getLocation().0,
-                        "longitude":sc.getLocation().1]
+        let location = ["latitude":sc.getLocation().0 ?? 0,
+                        "longitude":sc.getLocation().1 ?? 0]
         let dicts:[String:Any] = ["location":location,
                      "network_type":sc.getNetworkType() ?? "",
                      "user_country":sc.getCountry() ?? "",
                      "user_language":sc.getLanguage() ?? "",
-                     "user_timezone":sc.getTimeZone(),
+                     "user_timezone":sc.getTimeZone() ?? "",
                      "device_manufacture":"Apple",
-                     "device_model_number":sc.getDeviceName(),
-                     "os_version_build":sc.getSystemVersion(),
-                     "os_version_name":sc.getSystemName(),
-                     "os_kernel_version":sc.getKernel()]
+                     "device_model_number":sc.getDeviceName() ?? "",
+                     "os_version_build":sc.getSystemVersion() ?? "",
+                     "os_version_name":sc.getSystemName() ?? "",
+                     "os_kernel_version":sc.getKernel() ?? ""]
         do {
             let rawJson = try JSONSerialization.data(withJSONObject: dicts, options:JSONSerialization.WritingOptions(rawValue: 0))
             let path = directoryBuilder()
