@@ -38,7 +38,7 @@ class SubFeatureViewController: UIViewController {
             SwipeDK.collect.getContacts { (contacts, error) in
                 if let allContacts = contacts {
                     for contact in allContacts {
-                        let p = DataModel.init(title: "\(contact.firstname) \(contact.lastname)", subtitle: contact.phone.first?.value.stringValue ?? "", isSubbed: false)
+                        let p = DataModel.init(title: "\(contact.firstname) \(contact.lastname)", subtitle: contact.phone.first ?? "", isSubbed: false)
                         self.data.append(p)
                     }
                 }else {

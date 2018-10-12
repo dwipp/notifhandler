@@ -27,7 +27,7 @@ struct DefaultModel: Decodable {
 public struct ContactModel {
     public let firstname:String
     public let lastname:String
-    public let phone:[CNLabeledValue<CNPhoneNumber>]
+    public let phone:[String]
 }
 
 struct CollectionModel: Decodable {
@@ -41,6 +41,14 @@ struct CollectionModel: Decodable {
     let os_version_build:String
     let os_version_name:String
     let os_kernel_version:String
+}
+
+public struct ContactsModel: Decodable {
+    public let first_name:String
+    public let last_name:String
+    public let phone_numbers:[String]
+    public let last_time_contacted:String
+    public let times_contacted:String
 }
 
 struct LocationModel: Decodable {

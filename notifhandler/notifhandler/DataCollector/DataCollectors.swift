@@ -194,7 +194,13 @@ extension SwipeCollect {
                     let request = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
                     do {
                         try store.enumerateContacts(with: request, usingBlock: { (contact, stopPointer) in
-                            model.append(ContactModel(firstname: contact.givenName, lastname: contact.familyName, phone: contact.phoneNumbers))
+                            var phoneNumbers = [String]()
+
+                            for number in contact.phoneNumbers {
+                                phoneNumbers.append(number.value.stringValue.replacingOccurrences(of: " ", with: ""))
+                            }
+                            
+                            model.append(ContactModel(firstname: contact.givenName, lastname: contact.familyName, phone: phoneNumbers))
                             if totalContacts == model.count {
                                 completion(model, nil)
                             }
@@ -351,7 +357,7 @@ extension SwipeCollect {
     
     public func getLocationAndData(completion:@escaping ()->()){
         var countTransmit = 0
-        DataStorages.shared.pull { (model) in
+        DataStorages.shared.pullDataBundle { (model) in
             if let current = model {
                 if let lat = getLocation().0, let lon = getLocation().1 {
                     if current.location.latitude != lat || current.location.longitude != lon {
