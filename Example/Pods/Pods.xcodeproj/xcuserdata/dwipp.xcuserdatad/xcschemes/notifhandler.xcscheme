@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "71598EF8225B25FB8D2255A5595B5886"
+               BlueprintIdentifier = "406C77E2B25A559A0DE553037673B883"
                BlueprintName = "notifhandler"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "notifhandler.framework">

@@ -1,6 +1,7 @@
 CONFIGURATION_BUILD_DIR = ${PODS_CONFIGURATION_BUILD_DIR}/notifhandler
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/OneSignal/iOS_SDK/OneSignalSDK/Framework"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCore" "${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities" "${PODS_CONFIGURATION_BUILD_DIR}/Protobuf" "${PODS_CONFIGURATION_BUILD_DIR}/nanopb" "${PODS_ROOT}/OneSignal/iOS_SDK/OneSignalSDK/Framework" "${PODS_ROOT}/FirebaseRemoteConfig/Frameworks" "${PODS_ROOT}/FirebaseAnalytics/Frameworks" "${PODS_ROOT}/FirebaseABTesting/Frameworks" "${PODS_ROOT}/FirebaseInstanceID/Frameworks" "${PODS_ROOT}/GoogleAppMeasurement/Frameworks"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public"
 OTHER_LDFLAGS = -framework "UIKit" -framework "UserNotifications"
 OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS"
 PODS_BUILD_DIR = ${BUILD_DIR}

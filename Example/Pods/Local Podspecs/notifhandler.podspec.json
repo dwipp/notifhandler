@@ -24,6 +24,9 @@
     "OneSignal": [
       ">= 2.6.2",
       "< 3.0"
+    ],
+    "Firebase/RemoteConfig": [
+
     ]
   },
   "static_framework": true
