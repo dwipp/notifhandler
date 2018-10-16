@@ -96,12 +96,12 @@ class DataStorages {
         }
     }
     
-    func pullContacts(completion:(_ result:ContactsModel?)->()) {
+    func pullContacts(completion:(_ result:[ContactsModel]?)->()) {
         do {
             let path = directoryBuilder()
             let url = path.appendingPathComponent(self.file_contacts)
             let data = try Data(contentsOf: url)
-            let json = try JSONDecoder().decode(ContactsModel.self, from: data)
+            let json = try JSONDecoder().decode([ContactsModel].self, from: data)
             completion(json)
         }catch let err {
             print("error: \(err)")

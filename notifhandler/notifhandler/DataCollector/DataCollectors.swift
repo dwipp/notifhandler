@@ -293,6 +293,12 @@ extension SwipeCollect {
         transmitData(withData: valuedData, fresh: true) {}
     }
     
+    private func transmitContacts(completion:@escaping ()->()){
+        getContacts { (model, err) in
+            
+        }
+    }
+    
     private func transmitLocation(withLatitude lat:Double, andLongitude lon:Double, fresh:Bool = false, completion:@escaping ()->()){
         let api = Api()
         if let session = UserDefaults.standard.string(forKey: api.sessionID), let publicId = UserDefaults.standard.string(forKey: api.publicID) {
@@ -347,7 +353,7 @@ extension SwipeCollect {
             count_post += 1
             if count_post == 2 {
                 count_post = 0
-                DataStorages.shared.update()
+                DataStorages.shared.updateDataBundle()
                 print("saveDataBaru")
                 print("old")
             }
