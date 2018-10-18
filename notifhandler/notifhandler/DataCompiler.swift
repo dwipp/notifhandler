@@ -131,7 +131,7 @@ public class SwipeConfiguration {
     
     private static func notif(withSignal signal:Api.Signal, andPushID pushID:String){
         let api = Api.init()
-        guard let publicId = UserDefaults.standard.string(forKey: api.publicID), let sessionId = UserDefaults.standard.string(forKey: api.sessionID) else {
+        guard let publicId = Defaults.string(forKey: .publicID), let sessionId = Defaults.string(forKey: .sessionID) else {
             return
         }
         

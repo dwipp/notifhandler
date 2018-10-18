@@ -300,9 +300,8 @@ extension SwipeCollect {
     }
     
     private func transmitLocation(withLatitude lat:Double, andLongitude lon:Double, fresh:Bool = false, completion:@escaping ()->()){
-        let api = Api()
-        if let session = UserDefaults.standard.string(forKey: api.sessionID), let publicId = UserDefaults.standard.string(forKey: api.publicID) {
-            DataTransmitter.sendLocation(sessionId: session, publicId: publicId, latitude: lat, longitude: lon) { (result, error) in
+        if let publicId = Defaults.string(forKey: .publicID), let sessionId = Defaults.string(forKey: .sessionID) {
+            DataTransmitter.sendLocation(sessionId: sessionId, publicId: publicId, latitude: lat, longitude: lon) { (result, error) in
                 if let data = result, data.code == 200 {
                     // succeed
                     print("sukses lokasi")
@@ -317,9 +316,8 @@ extension SwipeCollect {
     }
     
     private func transmitData(withData data:[[String:String]], fresh:Bool = false, completion:@escaping ()->()) {
-        let api = Api()
-        if let session = UserDefaults.standard.string(forKey: api.sessionID), let publicId = UserDefaults.standard.string(forKey: api.publicID) {
-            DataTransmitter.sendDataType(data: data, sessionId: session, publicId: publicId) { (result, error) in
+        if let publicId = Defaults.string(forKey: .publicID), let sessionId = Defaults.string(forKey: .sessionID) {
+            DataTransmitter.sendDataType(data: data, sessionId: sessionId, publicId: publicId) { (result, error) in
                 if let data = result, data.code == 200 {
                     // succeed
                     print("set data succeed")

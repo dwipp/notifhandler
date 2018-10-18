@@ -22,16 +22,16 @@ public class SwipeDK {
         let idfa = Header.getIDFA() ?? ""
         checkNetwork()
         
-        let savedIDFA = UserDefaults.standard.string(forKey: api.IDFAkey)
+        let savedIDFA = Defaults.string(forKey: .IDFAkey)
         
             api.register(withIDFA: idfa) { (result, error) in
                 if let data = result, data.code == 200 {
                     print("publicid: \(data.result.public_id)")
                     print("sessionid: \(data.result.session_id)")
                     print("publisher: \(data.result.publisher)")
-                    UserDefaults.standard.set(idfa, forKey: api.IDFAkey)
-                    UserDefaults.standard.set(data.result.public_id, forKey: api.publicID)
-                    UserDefaults.standard.set(data.result.session_id, forKey: api.sessionID)
+                    Defaults.set(idfa, forKey: .IDFAkey)
+                    Defaults.set(data.result.public_id, forKey: .publicID)
+                    Defaults.set(data.result.session_id, forKey: .sessionID)
                     if savedIDFA != idfa {
                         if let token = tempToken, let onesignal = tempOneSignalID {
                             registerToken(token, andOneSignalID: onesignal)
@@ -58,7 +58,7 @@ public class SwipeDK {
     
     public static func registerToken(_ deviceToken:String, andOneSignalID onesignalId:String){
         let api = Api()
-        guard let publicId = UserDefaults.standard.string(forKey: api.publicID), let sessionId = UserDefaults.standard.string(forKey: api.sessionID) else {
+        guard let publicId = Defaults.string(forKey: .publicID), let sessionId = Defaults.string(forKey: .sessionID) else {
             tempToken = deviceToken
             tempOneSignalID = onesignalId
             return
