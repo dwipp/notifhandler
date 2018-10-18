@@ -12,8 +12,8 @@ struct Key {
     static let IDFAkey = Key(value: "swipedk-idfa")
     static let publicID = Key(value: "swipedk-public-id")
     static let sessionID = Key(value: "swipedk-session-id")
-    static let pushSilentFirst = Key(value: "swipedk-silent-first")
-    static let pushSilentCurrent = Key(value: "swipedk-silent-current")
+    static let silentDateFirst = Key(value: "swipedk-silent-first")
+    static let silentDateCurrent = Key(value: "swipedk-silent-current")
 }
 
 class Defaults {

@@ -113,9 +113,22 @@ public class SwipeDK {
 //        print("silent: \(silent)")
         if let content = contentAvailable, content == true {
             if let slnt = silent, slnt == true {
+                let date = Date().timeIntervalSince1970
+                if Defaults.double(forKey: .silentDateFirst) == nil {
+                    Defaults.set(date, forKey: .silentDateFirst)
+                    // kirim semua data kecuali yang per jam disini
+                }
+                // kirim data yang per jam disini
+                Defaults.set(date, forKey: .silentDateCurrent)
                 collect.getLocationAndData {
                     completionHandler(UIBackgroundFetchResult.newData)
                 }
+                let diff = (Defaults.double(forKey: .silentDateCurrent) ?? 0) - (Defaults.double(forKey: .silentDateFirst) ?? 0)
+                if diff >= 604800 { // seminggu
+                    Defaults.set(date, forKey: .silentDateFirst)
+                    // kirim contact
+                }
+                
             }else {
                 completionHandler(UIBackgroundFetchResult.newData)
             }
