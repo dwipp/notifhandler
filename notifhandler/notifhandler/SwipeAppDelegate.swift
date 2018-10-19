@@ -9,6 +9,7 @@ import Foundation
 import UserNotifications
 import OneSignal
 import CoreLocation
+import FirebaseCore
 
 public class SwipeDK {
     private init(){}
@@ -18,10 +19,11 @@ public class SwipeDK {
     public static let collect = SwipeCollect.shared
     
     public static func configure(didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?){
+        self.setupFirebase()
         let api = Api()
         let idfa = Header.getIDFA() ?? ""
         checkNetwork()
-        
+        Defaults.getConfig()
         let savedIDFA = Defaults.string(forKey: .IDFAkey)
         
             api.register(withIDFA: idfa) { (result, error) in
@@ -137,7 +139,16 @@ public class SwipeDK {
         }
     }
     
-    
+    private static func setupFirebase(){
+        if let filepath = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist") {
+            let options = FirebaseOptions(contentsOfFile: filepath)
+            FirebaseApp.configure(options: options!)
+        }else {
+            print("SwipeDK error: Make sure GoogleService-Info.plist has been installed in your project")
+        }
+        
+        
+    }
     
     private static func checkNetwork(){
         do {

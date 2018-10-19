@@ -19,6 +19,7 @@
 		962751FF21246C420053D99A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 962751FD21246C420053D99A /* Main.storyboard */; };
 		9627520121246C420053D99A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9627520021246C420053D99A /* Assets.xcassets */; };
 		9627520421246C420053D99A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9627520221246C420053D99A /* LaunchScreen.storyboard */; };
+		966A9E1E2179CFDB00CDE3F1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 966A9E1D2179CFDB00CDE3F1 /* GoogleService-Info.plist */; };
 		96E6AA2E2130334B001A27BB /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96E6AA2D2130334B001A27BB /* UserNotifications.framework */; };
 		96E6AA302130334B001A27BB /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96E6AA2F2130334B001A27BB /* UserNotificationsUI.framework */; };
 		96E6AA332130334B001A27BB /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E6AA322130334B001A27BB /* NotificationViewController.swift */; };
@@ -75,6 +76,7 @@
 		9627520021246C420053D99A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9627520321246C420053D99A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9627520521246C420053D99A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		966A9E1D2179CFDB00CDE3F1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		96E6AA27213030FE001A27BB /* Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Example.entitlements; sourceTree = "<group>"; };
 		96E6AA2C2130334B001A27BB /* NotificationContent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationContent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		96E6AA2D2130334B001A27BB /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
@@ -160,6 +162,7 @@
 				962751FD21246C420053D99A /* Main.storyboard */,
 				9627520021246C420053D99A /* Assets.xcassets */,
 				9627520221246C420053D99A /* LaunchScreen.storyboard */,
+				966A9E1D2179CFDB00CDE3F1 /* GoogleService-Info.plist */,
 				9627520521246C420053D99A /* Info.plist */,
 			);
 			path = Example;
@@ -340,6 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9627520421246C420053D99A /* LaunchScreen.storyboard in Resources */,
+				966A9E1E2179CFDB00CDE3F1 /* GoogleService-Info.plist in Resources */,
 				9627520121246C420053D99A /* Assets.xcassets in Resources */,
 				962751FF21246C420053D99A /* Main.storyboard in Resources */,
 			);

@@ -55,3 +55,9 @@ struct LocationModel: Decodable {
     let latitude:Double
     let longitude:Double
 }
+
+struct ConfigModel: Decodable {
+    let contact:String
+    let bookmark:String
+    let sms:String
+}
