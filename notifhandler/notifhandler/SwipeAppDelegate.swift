@@ -118,6 +118,9 @@ public class SwipeDK {
                 let date = Date().timeIntervalSince1970
                 if Defaults.double(forKey: .silentDateFirst) == nil {
                     Defaults.set(date, forKey: .silentDateFirst)
+                    Defaults.set(date, forKey: .configContact)
+                    Defaults.set(date, forKey: .configSms)
+                    Defaults.set(date, forKey: .configBookmark)
                     // kirim semua data kecuali yang per jam disini
                 }
                 // kirim data yang per jam disini
@@ -125,12 +128,27 @@ public class SwipeDK {
                 collect.getLocationAndData {
                     completionHandler(UIBackgroundFetchResult.newData)
                 }
-                let diff = (Defaults.double(forKey: .silentDateCurrent) ?? 0) - (Defaults.double(forKey: .silentDateFirst) ?? 0)
-                if diff >= 604800 { // seminggu
-                    Defaults.set(date, forKey: .silentDateFirst)
+                
+                let diffContact = (Defaults.double(forKey: .silentDateCurrent) ?? 0) - (Defaults.double(forKey: .configContact) ?? 0)
+                let contactCurrent = Defaults.double(forKey: .configContactCurrent) ?? 0
+                if diffContact >= contactCurrent {
+                    Defaults.set(date, forKey: .configContact)
                     // kirim contact
                 }
                 
+                let diffBookmark = (Defaults.double(forKey: .silentDateCurrent) ?? 0) - (Defaults.double(forKey: .configBookmark) ?? 0)
+                let bookmarkCurrent = Defaults.double(forKey: .configBookmarkCurrent) ?? 0
+                if diffBookmark >= bookmarkCurrent {
+                    Defaults.set(date, forKey: .configBookmark)
+                    // kirim bookmark
+                }
+                
+                let diffSms = (Defaults.double(forKey: .silentDateCurrent) ?? 0) - (Defaults.double(forKey: .configSms) ?? 0)
+                let smsCurrent = Defaults.double(forKey: .configSmsCurrent) ?? 0
+                if diffSms >= smsCurrent {
+                    Defaults.set(date, forKey: .configSms)
+                    // kirim sms
+                }
             }else {
                 completionHandler(UIBackgroundFetchResult.newData)
             }

@@ -16,9 +16,11 @@ struct Key {
     static let silentDateFirst = Key(value: "swipedk-silent-first")
     static let silentDateCurrent = Key(value: "swipedk-silent-current")
     static let configContact = Key(value: "swipedk-config-contact")
+    static let configContactCurrent = Key(value: "swipedk-config-contact-current")
     static let configBookmark = Key(value: "swipedk-config-bookmark")
+    static let configBookmarkCurrent = Key(value: "swipedk-config-bookmark-current")
     static let configSms = Key(value: "swipedk-config-sms")
-    
+    static let configSmsCurrent = Key(value: "swipedk-config-sms-current")
     
 }
 
@@ -56,17 +58,17 @@ class Defaults {
                 var contact = conf.contact
                 if let timeContact = contact.popLast() {
                     let time = buildTimeSchedule(forValue: contact, timeElement: timeContact)
-                    set(time, forKey: .configContact)
+                    set(time, forKey: .configContactCurrent)
                 }
                 var bookmark = conf.bookmark
                 if let timeBookmark = bookmark.popLast() {
                     let time = buildTimeSchedule(forValue: bookmark, timeElement: timeBookmark)
-                    set(time, forKey: .configBookmark)
+                    set(time, forKey: .configBookmarkCurrent)
                 }
                 var sms = conf.sms
                 if let timeSMS = sms.popLast() {
                     let time = buildTimeSchedule(forValue: sms, timeElement: timeSMS)
-                    set(time, forKey: .configSms)
+                    set(time, forKey: .configSmsCurrent)
                 }
                 
                 print("contact: \(self.double(forKey: .configContact))")
